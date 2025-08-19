@@ -1,6 +1,7 @@
 <script>
     import Splash from '../Splash.svelte';
     import { post, windowSize } from '../utils';
+    import Frame from '$lib/images/Frame.webp';
 
     let scale = $state(1);
 
@@ -44,18 +45,12 @@
 </script>
 
 <div class="app">
-    <div class="vignette"></div>
     {#if splash}
         <Splash />
     {:else}
         <div class="content" style="scale: {scale};">
-
-            <!-- <img class="frame" src={Frame} alt="" />
-            {#if true}
-                {@const style = 'user-drag: none;'}
-                <img class="corners" {style} src={Corners} alt="" />
-            {/if}
-            <GamePage />
+            <img class="frame" src={Frame} alt=""/>
+            <!-- <GamePage />
             <Intro />
             {#if ss.intro}
                 <div class="disclaimer">
@@ -71,7 +66,7 @@
         body {
             margin: 0;
             overflow: hidden;
-            --background: #87B4D8;
+            --background: #2f5f85;
             background: var(--background);
         }
 
@@ -106,17 +101,17 @@
         overflow: hidden;
         touch-action: manipulation;
         outline: none !important;
-        /* background-image: url('$lib/images/Seal.webp');
-        background-size: 70px; */
+        background-image: url('$lib/images/Texture.webp');
+        background-size: 407px 750px;
         place-content: center;
     }
 
     .content {
         grid-area: 1/1;
         display: grid;
-        background: var(--bill);
-        background-image: url('$lib/images/Texture.webp');
         touch-action: none;
+        background: #2F5D84;
+        background-image: radial-gradient(transparent, black 150%);
     }
 
     .frame {
@@ -134,12 +129,20 @@
         gap: 3px;
     }
 
-    .vignette {
-        grid-area: 1/1;
-        background-image: radial-gradient(transparent, black 150%);
-        width: 100dvw;
-        height: 100dvh;
-   }
+    @font-face {
+        font-family: Orbitron;
+        src: url('$lib/fonts/Orbitron.ttf');
+    }
+
+    @font-face {
+        font-family: IBM Plex Sans;
+        src: url('$lib/fonts/IBM Plex Sans Italic.ttf');
+    }
+
+    @font-face {
+        font-family: Inter;
+        src: url('$lib/fonts/Inter.ttf');
+    }
 
     @font-face {
         font-family: Roboto;
