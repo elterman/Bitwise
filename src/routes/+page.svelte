@@ -2,6 +2,7 @@
     import Splash from '../Splash.svelte';
     import { post, windowSize } from '../utils';
     import Frame from '$lib/images/Frame.webp';
+    import StartPage from '../Start Page.svelte';
 
     let scale = $state(1);
 
@@ -50,9 +51,9 @@
     {:else}
         <div class="content" style="scale: {scale};">
             <img class="frame" src={Frame} alt=""/>
-            <!-- <GamePage />
-            <Intro />
-            {#if ss.intro}
+            <!-- <GamePage /> -->
+            <StartPage />
+            <!-- {#if ss.intro}
                 <div class="disclaimer">
                     <span>MUSIC BY ERIC MATYAS  •  WWW.SOUNDIMAGE.ORG</span>
                 </div>
@@ -67,7 +68,9 @@
             margin: 0;
             overflow: hidden;
             --background: #2f5f85;
+            --color: #d0d0d0;
             background: var(--background);
+            color: var(--color);
         }
 
         .button-base {
@@ -130,17 +133,17 @@
     }
 
     @font-face {
-        font-family: Orbitron;
+        font-family: Title;
         src: url('$lib/fonts/Orbitron.ttf');
     }
 
     @font-face {
-        font-family: IBM Plex Sans;
+        font-family: Subtitle;
         src: url('$lib/fonts/IBM Plex Sans Italic.ttf');
     }
 
     @font-face {
-        font-family: Inter;
+        font-family: UI;
         src: url('$lib/fonts/Inter.ttf');
     }
 
