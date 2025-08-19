@@ -39,6 +39,6 @@
     }
 
     .button:hover {
-        text-decoration: underline;
+        color: white;
     }
 </style>

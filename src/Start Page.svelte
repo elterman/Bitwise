@@ -40,6 +40,7 @@
         grid-area: 1/1;
         display: grid;
         gap: 50px;
+        filter: drop-shadow(0 0 5px black);
     }
 
     .title {
@@ -48,6 +49,7 @@
         font-weight: bold;
         display: grid;
         justify-items: center;
+        color: #ffffffd0;
     }
 
     .subtitle {
@@ -67,6 +69,7 @@
 
     .opps {
         margin-bottom: 50px;
+        font-family: UI;
     }
 
     .ops {
@@ -80,6 +83,8 @@
 
     .op {
         cursor: pointer;
+        font-family: UI;
+        font-size: 28px;
     }
 
     .op:hover {
@@ -88,7 +93,8 @@
 
     .op-selected {
         pointer-events: none;
-        text-decoration: underline;
+        /* text-decoration: underline; */
         font-weight: bold;
+        color: white;
     }
 </style>
