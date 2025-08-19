@@ -33,6 +33,9 @@
 <style>
     .button {
         cursor: pointer;
+        font-family: Title;
+        font-weight: bold;
+        font-size: 40px;
     }
 
     .button:hover {

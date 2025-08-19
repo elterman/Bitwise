@@ -1,5 +1,6 @@
 <script>
     import { OPP_AI, OPP_FRIEND } from './const';
+    import PromptPanel from './Prompt Panel.svelte';
     import { ss } from './state.svelte';
 
     const onBits = (bits) => {
@@ -16,20 +17,21 @@
         <span>BITWISE</span>
         <span class="subtitle">Use your bits wisely.</span>
     </div>
-    <div class="ops-box">
+    <div class="ops-box modes">
         <span class="subtitle">mode:</span>
         <div class="ops">
             <span class="op {ss.bits === 1 ? 'op-selected' : ''}" onpointerdown={() => onBits(1)}>1-bit</span>
             <span class="op {ss.bits === 2 ? 'op-selected' : ''}" onpointerdown={() => onBits(2)}>2-bit</span>
         </div>
     </div>
-    <div class="ops-box">
+    <div class="ops-box opps">
         <span class="subtitle">opponent:</span>
         <div class="ops">
             <span class="op {ss.opp === OPP_FRIEND ? 'op-selected' : ''}" onpointerdown={() => onOpp(OPP_FRIEND)}>Friend</span>
             <span class="op {ss.opp === OPP_AI ? 'op-selected' : ''}" onpointerdown={() => onOpp(OPP_AI)}>AI</span>
         </div>
     </div>
+    <PromptPanel ops={[{ label: 'play' }]} />
 </div>
 
 <style>
@@ -59,6 +61,14 @@
         gap: 10px;
     }
 
+    .modes {
+        margin-top: 50px;
+    }
+
+    .opps {
+        margin-bottom: 50px;
+    }
+
     .ops {
         place-self: center;
         display: grid;
@@ -79,5 +89,6 @@
     .op-selected {
         pointer-events: none;
         text-decoration: underline;
+        font-weight: bold;
     }
 </style>
