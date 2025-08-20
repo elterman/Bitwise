@@ -10,6 +10,7 @@
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
     import Operators from './Operators.svelte';
+    import Reference from './Reference.svelte';
 
     onMount(() => {
         const loadGame = () => {
@@ -31,7 +32,7 @@
 
 <div class="game-page {hidden ? 'hidden' : ''}">
     <Stats />
-    <div style="font-family: UI;">BITWISE OPERATOR REFERENCE</div>
+    <Reference/>
     <QueueArea />
     <Operators />
     <Instructions />
