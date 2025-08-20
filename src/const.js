@@ -14,3 +14,6 @@ export const PROMPT_PLAY_AGAIN = 'play again?';
 export const PROMPT_START = 'start';
 export const PROMPT_RESUME = 'resume';
 export const PROMPT_NO = 'no';
+export const OP_AND = 'AND';
+export const OP_OR = 'OR';
+export const OP_XOR = 'XOR';

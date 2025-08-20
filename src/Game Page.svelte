@@ -9,6 +9,7 @@
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
+    import Operators from './Operators.svelte';
 
     onMount(() => {
         const loadGame = () => {
@@ -30,9 +31,9 @@
 
 <div class="game-page {hidden ? 'hidden' : ''}">
     <Stats />
-    <div style='font-family: UI;'>BITWISE OPERATOR REFERENCE</div>
+    <div style="font-family: UI;">BITWISE OPERATOR REFERENCE</div>
     <MiddleGround />
-    <div>OPERATOR AREA</div>
+    <Operators />
     <Instructions />
     <Prompt />
     <Toolbar />
@@ -49,7 +50,7 @@
         width: 100%;
         box-sizing: border-box;
         padding: 30px 35px;
-        /* background: #0007; */
+        filter: drop-shadow(0 0 4px black);
     }
 
     .hidden {
