@@ -1,9 +1,11 @@
+import { START_PAGE } from './const';
 import { OPP_AI, PROMPT_TRANSITION } from './const';
 import { post } from './utils';
 
 export const ss = $state({
     bits: 1,
-    opp: OPP_AI
+    opp: OPP_AI,
+    page: START_PAGE,
 });
 
 export const _prompt = $state({

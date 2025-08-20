@@ -3,6 +3,7 @@
     import { post, windowSize } from '../utils';
     import Frame from '$lib/images/Frame.webp';
     import StartPage from '../Start Page.svelte';
+    import GamePage from '../Game Page.svelte';
 
     let scale = $state(1);
 
@@ -51,7 +52,7 @@
     {:else}
         <div class="content" style="scale: {scale};">
             <img class="frame" src={Frame} alt=""/>
-            <!-- <GamePage /> -->
+            <GamePage />
             <StartPage />
             <!-- {#if ss.intro}
                 <div class="disclaimer">
