@@ -51,7 +51,7 @@
         <Splash />
     {:else}
         <div class="content" style="scale: {scale};">
-            <img class="frame" src={Frame} alt=""/>
+            <img class="frame" src={Frame} alt="" />
             <GamePage />
             <StartPage />
             <!-- {#if ss.intro}
@@ -95,6 +95,10 @@
             -ms-user-select: none;
             user-select: none;
         }
+
+        .xo {
+            filter: grayscale(1) invert(1) brightness(1.7);
+        }
     }
 
     .app {
@@ -108,7 +112,7 @@
         background-image: url('$lib/images/Texture.webp');
         background-size: 407px 750px;
         place-content: center;
-        font-family: Roboto;
+        font-family: Roboto Condensed;
     }
 
     .content {
@@ -116,7 +120,7 @@
         width: 450px;
         display: grid;
         touch-action: none;
-        background: #2F5D84;
+        background: #2f5d84;
         background-image: radial-gradient(transparent, black 150%);
     }
 

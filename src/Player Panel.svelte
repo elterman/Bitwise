@@ -12,9 +12,9 @@
     <img class="player" src={player === 1 ? Player1 : ss.opp === OPP_AI ? Robot : Player2} alt="" width={70} />
     <span class="text">Player {player} scores when the result is</span>
     {#if player === 1}
-        <span class="x">{X}{ss.bits === 1 ? '' : X}</span>
+        <span class="x xo">{X}{ss.bits === 1 ? '' : X}</span>
     {:else}
-        <span class="o">{O}{ss.bits === 1 ? '' : O}</span>
+        <span class="o xo">{O}{ss.bits === 1 ? '' : O}</span>
     {/if}
 </div>
 
@@ -33,6 +33,7 @@
 
     .text {
         text-align: center;
+        font-family: UI;
         font-size: 14px;
     }
 

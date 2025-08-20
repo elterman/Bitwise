@@ -28,15 +28,15 @@
         padding: 5px 20px 3px;
         place-self: center;
         place-content: center;
-        gap: 10px;
+        gap: 20px;
         border-radius: 50vh;
         color: var(--sn);
+        font-family: UI;
     }
 
     .item {
         box-sizing: border-box;
-        font-family: Roboto;
-        font-weight: bold;
+        /* font-weight: ; */
         font-size: 14px;
         border-radius: 50vh;
         display: grid;
@@ -47,7 +47,6 @@
     }
 
     .label {
-        font-family: Roboto;
         color: var(--gray);
     }
 
