@@ -32,6 +32,7 @@
         border-radius: 50vh;
         color: var(--sn);
         font-family: UI;
+        filter: drop-shadow(0 0 3px #00000080);
     }
 
     .item {

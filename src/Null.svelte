@@ -1,17 +1,11 @@
 <script>
-    const { height = 45, color } = $props();
-    const scale = $derived(height / 220);
-    const _s = $derived(35 * scale);
-    const _b = $derived(30 * scale);
-    const border = $derived(`${_s}px solid ${color}`);
+    import { OFFWHITE } from './const';
+    const { width = 21, color = OFFWHITE } = $props();
 </script>
 
-<div class="null" style="height: {height - 2 * _b}px; border: {border};"> </div>
+<svg id="svg-x" style='' width={width} height={width} viewBox = '0 0 100 100' xmlns="http://www.w3.org/2000/svg">
+    <circle cx={50} cy={50} stroke-width={20} r={40} stroke={color} fill='none'/>
+</svg>
 
 <style>
-    .null {
-        aspect-ratio: 1;
-        box-sizing: border-box;
-        border-radius: 50%;
-    }
 </style>

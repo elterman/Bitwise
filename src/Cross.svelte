@@ -1,17 +1,11 @@
 <script>
-    const { height = 50, color } = $props();
-    const scale = $derived(height / 220);
-    const _s = $derived(35 * scale);
-    const _b = $derived(30 * scale);
-    const _g = $derived(`conic-gradient(${color} 0 0) no-repeat 50%/`);
-    const background = $derived(`${_g} ${_b}px calc(100% - 2 * ${_s}px), ${_g} calc(100% - 2 * ${_s}px) ${_b}px`);
+    import { OFFWHITE } from './const';
+    const { width = 20, color = OFFWHITE } = $props();
 </script>
 
-<div class="cross" style="height: {height}px; background: {background};"> </div>
+<svg id="svg-x" style='' width={width} height={width} viewBox = '0 0 100 100' xmlns="http://www.w3.org/2000/svg">
+    <path stroke={color} stroke-width={24} stroke-linecap="round" d="M 12,12 L88,88 M 88,12 L 12,88" />
+</svg>
 
 <style>
-    .cross {
-        aspect-ratio: 1;
-        rotate: 45deg;
-    }
 </style>

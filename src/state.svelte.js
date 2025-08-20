@@ -6,6 +6,7 @@ export const ss = $state({
     bits: 1,
     opp: OPP_AI,
     page: START_PAGE,
+    score: [0,0],
 });
 
 export const _prompt = $state({

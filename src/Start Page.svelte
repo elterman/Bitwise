@@ -100,7 +100,7 @@
 
     .op-selected {
         pointer-events: none;
-        /* text-decoration: underline; */
+        /* text-decoration: overline; */
         font-weight: bold;
         color: white;
     }
