@@ -58,6 +58,7 @@
 
     .score {
         font-family: Roboto Mono;
-        font-size: 40px;
+        font-weight: bold;
+        font-size: 36px;
     }
 </style>
