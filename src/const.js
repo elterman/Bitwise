@@ -17,3 +17,6 @@ export const PROMPT_NO = 'no';
 export const OP_AND = 'AND';
 export const OP_OR = 'OR';
 export const OP_XOR = 'XOR';
+export const BIT_COLOR = '#000';
+export const X = '❌';
+export const O = '⭕';

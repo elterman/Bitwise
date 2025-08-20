@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import Instructions from './Instructions.svelte';
-    import MiddleGround from './Queue Area.svelte';
+    import QueueArea from './Queue Area.svelte';
     import Prompt from './Prompt.svelte';
     import Stats from './Stats.svelte';
     import Toolbar from './Toolbar.svelte';
@@ -32,7 +32,7 @@
 <div class="game-page {hidden ? 'hidden' : ''}">
     <Stats />
     <div style="font-family: UI;">BITWISE OPERATOR REFERENCE</div>
-    <MiddleGround />
+    <QueueArea />
     <Operators />
     <Instructions />
     <Prompt />
@@ -50,7 +50,7 @@
         width: 100%;
         box-sizing: border-box;
         padding: 30px 35px;
-        filter: drop-shadow(0 0 4px black);
+        /* filter: drop-shadow(0 0 4px black); */
     }
 
     .hidden {
