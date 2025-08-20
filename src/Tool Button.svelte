@@ -55,7 +55,7 @@
         place-items: center;
         border-radius: 25%;
         transition: transform 0.1s;
-        opacity: 0.8;
+        opacity: 0.7;
     }
 
     .button:hover {

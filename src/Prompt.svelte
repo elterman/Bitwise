@@ -73,7 +73,7 @@
 
 <style>
     .prompt {
-        grid-area: 4/1;
+        grid-area: 5/1;
         place-self: center;
         transform: scale(0);
         opacity: 0;

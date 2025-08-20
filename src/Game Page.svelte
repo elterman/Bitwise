@@ -1,13 +1,14 @@
 <script>
     import { onMount } from 'svelte';
+    import Instructions from './Instructions.svelte';
+    import MiddleGround from './Queue Area.svelte';
     import Prompt from './Prompt.svelte';
+    import Stats from './Stats.svelte';
+    import Toolbar from './Toolbar.svelte';
     import { APP_STATE, GAME_PAGE } from './const';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
-    import Toolbar from './Toolbar.svelte';
-    import MovePrompt from './Move Prompt.svelte';
-    import Stats from './Stats.svelte';
 
     onMount(() => {
         const loadGame = () => {
@@ -28,20 +29,27 @@
 </script>
 
 <div class="game-page {hidden ? 'hidden' : ''}">
-    <Stats/>
-    <MovePrompt/>
+    <Stats />
+    <div style='font-family: UI;'>BITWISE OPERATOR REFERENCE</div>
+    <MiddleGround />
+    <div>OPERATOR AREA</div>
+    <Instructions />
     <Prompt />
-    <Toolbar/>
+    <Toolbar />
 </div>
 
 <style>
     .game-page {
         grid-area: 1/1;
-        place-self: center;
+        /* place-self: center; */
         display: grid;
+        grid: auto auto 1fr auto 0.2fr auto / auto;
         gap: 20px;
-        width: 100%;
         transition: opacity 0.2s;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 30px 35px;
+        /* background: #0007; */
     }
 
     .hidden {

@@ -108,10 +108,12 @@
         background-image: url('$lib/images/Texture.webp');
         background-size: 407px 750px;
         place-content: center;
+        font-family: Roboto;
     }
 
     .content {
         grid-area: 1/1;
+        width: 450px;
         display: grid;
         touch-action: none;
         background: #2F5D84;

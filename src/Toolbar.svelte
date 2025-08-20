@@ -82,7 +82,7 @@
 
 <style>
     .toolbar {
-        grid-area: 5/1;
+        grid-area: 6/1;
         display: grid;
         grid-auto-flow: column;
         place-content: center;
