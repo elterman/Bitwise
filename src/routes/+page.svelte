@@ -69,9 +69,12 @@
             margin: 0;
             overflow: hidden;
             --background: #2f5f85;
-            --color: #d0d0d0;
+            --offwhite: #d0d0d0;
             background: var(--background);
-            color: var(--color);
+            color: var(--offwhite);
+            --blue: #87b4d8;
+            --yellow: #d8d387;
+            --green: #add0a3;
         }
 
         .button-base {

@@ -45,13 +45,12 @@
         grid-area: 1/1;
         /* place-self: center; */
         display: grid;
-        grid: auto auto 1fr auto 0.2fr auto / auto;
-        gap: 20px;
+        grid: auto auto 1fr auto 60px auto / auto;
+        gap: 15px;
         transition: opacity 0.2s;
         width: 100%;
         box-sizing: border-box;
-        padding: 30px 35px;
-        /* filter: drop-shadow(0 0 4px black); */
+        padding: 25px 35px;
     }
 
     .hidden {
