@@ -1,6 +1,5 @@
 <script>
     import { sample } from 'lodash-es';
-    import { O, X } from './const';
     import { ss } from './state.svelte';
     import { post } from './utils';
     import XO from './XO.svelte';
@@ -16,17 +15,17 @@
         }, 1000);
     };
 
-    const b1 = sample([X, O]);
-    const b2 = sample([X, O]);
-
+    const b1 = sample([true, false]);
+    const b2 = sample([true, false]);
+    const size = 14;
 </script>
 
 <div class="op {op === ss.op ? 'selected' : ss.op || op === ss.last_op ? 'disabled' : ''}" onpointerdown={onOpSelect}>
     <div>{op}</div>
-    <div class='output xo'>
-        <span class={b1 === X ? 'x' : 'o'} style='margin-right: {ss.bits === 2 ? -3 : 0}px;'>{b1}</span>
+    <div class="output">
+        <XO x={b1} size={size} />
         {#if ss.bits === 2}
-        <span class={b2 === X ? 'x' : 'o'} style='margin-left: -3px;'>{b2}</span>
+            <XO x={b2} size={size} />
         {/if}
     </div>
 </div>
@@ -34,6 +33,7 @@
 <style>
     .op {
         display: grid;
+        gap: 5px;
         justify-items: center;
         cursor: pointer;
         transition: color 0.2s;
@@ -45,7 +45,7 @@
 
     .disabled {
         pointer-events: none;
-        opacity: 0.5;
+        opacity: 0.35;
     }
 
     .selected {
@@ -55,14 +55,8 @@
     }
 
     .output {
-        opacity: 0.8;
-    }
-
-    .x {
-        font-size: 12px;
-    }
-
-    .o {
-        font-size: 13px;
+        display: grid;
+        grid-auto-flow: column;
+        gap: 5px;
     }
 </style>
