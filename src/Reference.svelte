@@ -1,9 +1,14 @@
 <script>
-    let open = $state(true);
+    import Cross from './Cross.svelte';
+    import Null from './Null.svelte';
+
+    let open = $state(false);
 
     const onClick = () => {
         open = !open;
     };
+
+    const sz = 11;
 </script>
 
 <div class="reference">
@@ -13,31 +18,31 @@
     </div>
     <div class="table-container {open ? 'open' : ''}">
         <div class="table">
-            <div class="cell" style="grid-area: 1/1"></div>
-            <div class="cell" style="grid-area: 1/2"></div>
-            <div class="cell" style="grid-area: 1/3"></div>
-            <div class="cell" style="grid-area: 1/4"></div>
-            <div class="cell" style="grid-area: 1/5"></div>
-            <div class="cell" style="grid-area: 2/1"></div>
-            <div class="cell" style="grid-area: 2/2"></div>
-            <div class="cell" style="grid-area: 2/3"></div>
-            <div class="cell" style="grid-area: 2/4"></div>
-            <div class="cell" style="grid-area: 2/5"></div>
-            <div class="cell" style="grid-area: 3/1"></div>
-            <div class="cell" style="grid-area: 3/2"></div>
-            <div class="cell" style="grid-area: 3/3"></div>
-            <div class="cell" style="grid-area: 3/4"></div>
-            <div class="cell" style="grid-area: 3/5"></div>
-            <div class="cell" style="grid-area: 4/1"></div>
-            <div class="cell" style="grid-area: 4/2"></div>
-            <div class="cell" style="grid-area: 4/3"></div>
-            <div class="cell" style="grid-area: 4/4"></div>
-            <div class="cell" style="grid-area: 4/5"></div>
-            <div class="cell" style="grid-area: 5/1"></div>
-            <div class="cell" style="grid-area: 5/2"></div>
-            <div class="cell" style="grid-area: 5/3"></div>
-            <div class="cell" style="grid-area: 5/4"></div>
-            <div class="cell" style="grid-area: 5/5"></div>
+            <div class="cell input" style="grid-area: 1/1">Input A</div>
+            <div class="cell input" style="grid-area: 1/2">Input B</div>
+            <div class="cell" style="grid-area: 1/3">AND</div>
+            <div class="cell" style="grid-area: 1/4">OR</div>
+            <div class="cell" style="grid-area: 1/5">XOR</div>
+            <div class="cell input" style="grid-area: 2/1"><Null width={sz} /></div>
+            <div class="cell input" style="grid-area: 2/2"><Null width={sz} /></div>
+            <div class="cell" style="grid-area: 2/3"><Null width={sz} /></div>
+            <div class="cell" style="grid-area: 2/4"><Null width={sz} /></div>
+            <div class="cell" style="grid-area: 2/5"><Null width={sz} /></div>
+            <div class="cell input" style="grid-area: 3/1"><Null width={sz} /></div>
+            <div class="cell input" style="grid-area: 3/2"><Cross width={sz} /></div>
+            <div class="cell" style="grid-area: 3/3"><Null width={sz} /></div>
+            <div class="cell" style="grid-area: 3/4"><Cross width={sz} /></div>
+            <div class="cell" style="grid-area: 3/5"><Cross width={sz} /></div>
+            <div class="cell input" style="grid-area: 4/1"><Cross width={sz} /></div>
+            <div class="cell input" style="grid-area: 4/2"><Null width={sz} /></div>
+            <div class="cell" style="grid-area: 4/3"><Null width={sz} /></div>
+            <div class="cell" style="grid-area: 4/4"><Cross width={sz} /></div>
+            <div class="cell" style="grid-area: 4/5"><Cross width={sz} /></div>
+            <div class="cell input" style="grid-area: 5/1"><Cross width={sz} /></div>
+            <div class="cell input" style="grid-area: 5/2"><Cross width={sz} /></div>
+            <div class="cell" style="grid-area: 5/3"><Cross width={sz} /></div>
+            <div class="cell" style="grid-area: 5/4"><Cross width={sz} /></div>
+            <div class="cell" style="grid-area: 5/5"><Null width={sz} /></div>
         </div>
     </div>
 </div>
@@ -61,12 +66,14 @@
         color: white;
     }
 
+    .header {
+        font-size: 14px;
+    }
+
     .chevron {
         place-self: center;
-        /* margin-left: 120px; */
-
-        --s: 4px; /* control the shape (can be percentage) */
-        width: 16px;
+        --s: 3px; /* control the shape (can be percentage) */
+        width: 14px;
         aspect-ratio: 5/3;
         clip-path: polygon(0 0, 0 var(--s), 50% 100%, 100% var(--s), 100% 0, 50% calc(100% - var(--s)));
         background: var(--offwhite);
@@ -102,5 +109,9 @@
         box-sizing: border-box;
         display: grid;
         place-content: center;
+    }
+
+    .input {
+        background: #00000030;
     }
 </style>
