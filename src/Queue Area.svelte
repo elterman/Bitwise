@@ -14,6 +14,6 @@
     .queue-area {
         display: grid;
         grid: auto / auto 1fr auto;
-        gap: 10px;
+        gap: 20px;
     }
 </style>

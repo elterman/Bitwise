@@ -87,5 +87,6 @@
         grid-auto-flow: column;
         place-content: center;
         gap: 5px;
+        filter: drop-shadow(0 0 6px #000000);
     }
 </style>

@@ -19,5 +19,6 @@
         font-family: Title;
         font-weight: bold;
         font-size: 20px;
+        filter: drop-shadow(0 0 3px #00000080);
     }
 </style>

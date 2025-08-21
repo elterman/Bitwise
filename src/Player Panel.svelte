@@ -4,11 +4,11 @@
     import Robot from '$lib/images/Robot.webp';
     import NumberFlow from '@number-flow/svelte';
     import { OPP_AI } from './const';
-    import Cross from './Cross.svelte';
-    import Null from './Null.svelte';
     import { ss } from './state.svelte';
+    import XO from './XO.svelte';
 
     const { player } = $props();
+    const size = 20;
 </script>
 
 <div class="player-panel">
@@ -16,14 +16,14 @@
     <span class="text">Player {player} scores when the result is</span>
     <div class="bits">
         {#if player === 1}
-            <Cross />
+            <XO x {size} />
             {#if ss.bits === 2}
-                <Null />
+                <XO {size} />
             {/if}
         {:else}
-            <Null />
+            <XO {size} />
             {#if ss.bits === 2}
-                <Cross />
+                <XO x {size} />
             {/if}
         {/if}
     </div>
@@ -60,5 +60,10 @@
         font-family: Roboto Mono;
         font-weight: bold;
         font-size: 36px;
+        /* color: var(--green); */
+    }
+
+    .bit {
+        filter: invert(1) opacity(0.75);
     }
 </style>

@@ -3,6 +3,7 @@
     import { O, X } from './const';
     import { ss } from './state.svelte';
     import { post } from './utils';
+    import XO from './XO.svelte';
 
     const { op } = $props();
 
