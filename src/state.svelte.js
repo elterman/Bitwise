@@ -8,6 +8,7 @@ export const ss = $state({
     score: [0, 0],
     appKey: () => `${APP_STATE} • ${ss.bits} • ${ss.opp}`,
     page: START_PAGE,
+    show_reference: true,
 });
 
 export const _prompt = $state({

@@ -7,7 +7,7 @@
     const { bits, index } = $props();
 
     const filter = 'invert(0.25)';
-    const size = $derived(ss.open ? 16 : 20);
+    const size = $derived(ss.show_reference ? 21 : 20);
     const b1 = bits[0];
     const b2 = bits[1];
     const classes = $derived(`cell ${ss.bits === 2 ? 'double-cell' : ''} ${index < QUEUE_SIZE - 2 ? '' : valueColor(bits)}`);
@@ -29,7 +29,7 @@
         grid-auto-flow: column;
         place-content: center;
         align-items: center;
-        background: #ffffff80;
+        background: #ffffff60;
     }
 
     .double-cell {

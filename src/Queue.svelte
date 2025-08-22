@@ -3,9 +3,11 @@
     import Cell from './Cell.svelte';
     import { QUEUE_SIZE } from './const';
     import { ss } from './state.svelte';
+
+    const grid = `repeat(${QUEUE_SIZE}, 50px) / auto;`;
 </script>
 
-<div class="queue">
+<div class="queue" style="grid: {grid}">
     {#each ss.queue as bits, index (index)}
         <Cell {bits} {index} />
     {/each}
@@ -21,9 +23,8 @@
 
 <style>
     .queue {
-        justify-self: center;
+        place-self: end center;
         display: grid;
-        grid: repeat(10, 1fr) / auto;
         box-sizing: border-box;
         width: 95px;
     }

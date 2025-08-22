@@ -3,7 +3,7 @@
     import XO from './XO.svelte';
 
     const onClick = () => {
-        ss.open = !ss.open;
+        ss.show_reference = !ss.show_reference;
     };
 
     const size = 11;
@@ -12,9 +12,9 @@
 <div class="reference">
     <div class="panel" onpointerdown={onClick}>
         <span class="header">BITWISE OPERATOR REFERENCE</span>
-        <span class="chevron {ss.open ? 'flipped' : ''}"></span>
+        <span class="chevron {ss.show_reference ? 'flipped' : ''}"></span>
     </div>
-    <div class="table-container {ss.open ? 'open' : ''}">
+    <div class="table-container {ss.show_reference ? 'open' : ''}">
         <div class="table">
             <div class="cell input" style="grid-area: 1/1">Input A</div>
             <div class="cell input" style="grid-area: 1/2">Input B</div>
@@ -48,8 +48,9 @@
 <style>
     .reference {
         display: grid;
-        gap: 5px;
+        gap: 8px;
         filter: drop-shadow(0 0 3px #00000080);
+        color: var(--blue);
     }
 
     .panel {
@@ -58,7 +59,8 @@
         place-content: start;
         gap: 20px;
         font-family: UI;
-        cursor: pointer;
+        /* cursor: pointer; */
+        pointer-events: none;
     }
 
     .panel:hover {
@@ -70,6 +72,7 @@
     }
 
     .chevron {
+        display: none;
         place-self: center;
         --s: 3px; /* control the shape (can be percentage) */
         width: 14px;
