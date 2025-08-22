@@ -2,17 +2,25 @@
     import Player2 from '$lib/images/Human Blue.webp';
     import Player1 from '$lib/images/Human Yellow.webp';
     import Robot from '$lib/images/Robot.webp';
-    import NumberFlow from '@number-flow/svelte';
     import { OPP_AI } from './const';
     import { ss } from './state.svelte';
     import XO from './XO.svelte';
 
     const { player } = $props();
     const size = 20;
+
+    const onClick = () => {
+        ss.turn = player;
+    };
 </script>
 
 <div class="player-panel {player === 1 ? 'one' : 'two'}">
-    <img class="player" src={player === 1 ? Player1 : ss.opp === OPP_AI ? Robot : Player2} alt="" width={70} />
+    <img
+        class="player {ss.turn === player ? 'spin disabled' : ''}"
+        src={player === 1 ? Player1 : ss.opp === OPP_AI ? Robot : Player2}
+        alt=""
+        width={70}
+        onpointerdown={onClick} />
     <span class="text">Player {player} scores when the output is</span>
     <div class="bits">
         {#if player === 1}
@@ -27,7 +35,6 @@
             {/if}
         {/if}
     </div>
-    <!-- <div class="score"><NumberFlow value={ss.score[player - 1]} /></div> -->
 </div>
 
 <style>
@@ -41,6 +48,11 @@
 
     .player {
         place-self: center;
+        cursor: pointer;
+    }
+
+    .disabled {
+        pointer-events: none;
     }
 
     .one {
@@ -63,5 +75,18 @@
         grid-auto-flow: column;
         gap: 10px;
         align-items: center;
+    }
+
+    .spin {
+        animation: spin 0.5s alternate infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotateY(0deg);
+        }
+        to {
+            transform: rotateY(90deg);
+        }
     }
 </style>

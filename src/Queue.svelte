@@ -8,7 +8,7 @@
 </script>
 
 <div class="queue" style="grid: {grid}">
-    {#each ss.queue as bits, index (index)}
+    {#each ss.queue as bits, index (index + Date.now())}
         <Cell {bits} {index} />
     {/each}
     <div class="label" style="grid-area: {QUEUE_SIZE - 1} / 1">

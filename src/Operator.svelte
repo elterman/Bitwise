@@ -1,4 +1,5 @@
 <script>
+    import { sample } from 'lodash-es';
     import { QUEUE_SIZE } from './const';
     import { ss } from './state.svelte';
     import { post } from './utils';
@@ -6,16 +7,10 @@
 
     const { op } = $props();
 
-    const onOpSelect = () => {
-        ss.op = op;
+    const fn = () => {
+        const bits1 = ss.queue[QUEUE_SIZE - 1];
+        const bits2 = ss.queue[QUEUE_SIZE - 2];
 
-        post(() => {
-            ss.last_op = op;
-            delete ss.op;
-        }, 1000);
-    };
-
-    const fn = (bits1, bits2) => {
         switch (op) {
             case 'AND':
                 return [bits1[0] & bits2[0], bits1[1] & bits2[1]];
@@ -28,7 +23,22 @@
         }
     };
 
-    const output = $derived.by(() => fn(ss.queue[QUEUE_SIZE - 1], ss.queue[QUEUE_SIZE - 2]));
+    let output = $derived(fn());
+
+    const onOpSelect = () => {
+        ss.op = op;
+
+        const que = [...ss.queue];
+        que.unshift([sample([1, 0]), sample([1, 0])]);
+        que.splice(QUEUE_SIZE - 1, 2, output);
+        ss.queue = que;
+
+        post(() => {
+            ss.last_op = op;
+            delete ss.op;
+        }, 1000);
+    };
+
     const size = 14;
 </script>
 
