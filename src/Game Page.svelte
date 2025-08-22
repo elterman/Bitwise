@@ -11,6 +11,7 @@
     import { post } from './utils';
     import Operators from './Operators.svelte';
     import Reference from './Reference.svelte';
+    import { fade } from 'svelte/transition';
 
     onMount(() => {
         const loadGame = () => {
@@ -26,19 +27,19 @@
 
         post(loadGame);
     });
-
-    const hidden = $derived(ss.page !== GAME_PAGE);
 </script>
 
-<div class="game-page {hidden ? 'hidden' : ''}">
-    <Stats />
-    <Reference/>
-    <QueueArea />
-    <Operators />
-    <Instructions />
-    <Prompt />
-    <Toolbar />
-</div>
+{#if ss.page === GAME_PAGE}
+    <div class="game-page" in:fade>
+        <Stats />
+        <Reference />
+        <QueueArea />
+        <Operators />
+        <Instructions />
+        <Prompt />
+        <Toolbar />
+    </div>
+{/if}
 
 <style>
     .game-page {
@@ -51,9 +52,5 @@
         width: 100%;
         box-sizing: border-box;
         padding: 25px 35px;
-    }
-
-    .hidden {
-        opacity: 0;
     }
 </style>

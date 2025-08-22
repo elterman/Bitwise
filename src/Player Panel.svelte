@@ -27,7 +27,7 @@
             {/if}
         {/if}
     </div>
-    <div class="score"><NumberFlow value={ss.score[player - 1]} /></div>
+    <!-- <div class="score"><NumberFlow value={ss.score[player - 1]} /></div> -->
 </div>
 
 <style>

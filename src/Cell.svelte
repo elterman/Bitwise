@@ -1,6 +1,8 @@
 <script>
     import { ss } from './state.svelte';
+    import { valueColor } from './shared.svelte';
     import XO from './XO.svelte';
+    import { QUEUE_SIZE } from './const';
 
     const { bits, index } = $props();
 
@@ -8,16 +10,7 @@
     const size = 20;
     const b1 = bits[0];
     const b2 = bits[1];
-
-    const background = $derived.by(() => {
-        if (ss.bits === 1) {
-            return b1 ? 'yellow' : 'blue';
-        }
-
-        return b1 && b2 ? 'green' : b1 && !b2 ? 'yellow' : b2 && !b1 ? 'blue' : '';
-    });
-
-    const classes = $derived(`cell ${ss.bits === 2 ? 'double-cell' : ''} ${background}`);
+    const classes = $derived(`cell ${ss.bits === 2 ? 'double-cell' : ''} ${index < QUEUE_SIZE - 2 ? '' : valueColor(bits)}`);
 </script>
 
 <div class={classes} style="grid-area: {index + 1} / 1">
@@ -36,12 +29,16 @@
         grid-auto-flow: column;
         place-content: center;
         align-items: center;
-        background: var(--off-white);
+        background: #ffffff80;
     }
 
     .double-cell {
         grid: auto / 1fr 1fr;
         padding: 0 6px;
+    }
+
+    .off-white {
+        background: var(--off-white);
     }
 
     .yellow {

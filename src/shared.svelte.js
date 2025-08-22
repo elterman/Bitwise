@@ -9,6 +9,17 @@ export const persist = () => {
         ..._stats, ..._sound, queue: ss.queue, score: ss.score,
         turn: ss.turn, who_started: ss.who_started, disabled_op: ss.disabled_op,
     });
-    
+
     localStorage.setItem(APP_STATE, json);
+};
+
+export const valueColor = (bits) => {
+    const b1 = bits[0];
+    const b2 = bits[1];
+
+    if (ss.bits === 1) {
+        return b1 ? 'yellow' : 'blue';
+    }
+
+    return b1 && b2 ? 'green' : b1 && !b2 ? 'yellow' : b2 && !b1 ? 'blue' : 'off-white';
 };
