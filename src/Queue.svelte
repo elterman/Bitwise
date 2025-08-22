@@ -23,6 +23,7 @@
 
 <style>
     .queue {
+        grid-area: 1/2;
         place-self: end center;
         display: grid;
         box-sizing: border-box;

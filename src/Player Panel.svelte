@@ -11,7 +11,7 @@
     const size = 20;
 </script>
 
-<div class="player-panel">
+<div class="player-panel {player === 1 ? 'one' : 'two'}">
     <img class="player" src={player === 1 ? Player1 : ss.opp === OPP_AI ? Robot : Player2} alt="" width={70} />
     <span class="text">Player {player} scores when the output is</span>
     <div class="bits">
@@ -43,6 +43,14 @@
         place-self: center;
     }
 
+    .one {
+        grid-area: 1/1;
+    }
+
+    .two {
+        grid-area: 1/3;
+    }
+
     .text {
         text-align: center;
         font-family: UI;
@@ -55,11 +63,5 @@
         grid-auto-flow: column;
         gap: 10px;
         align-items: center;
-    }
-
-    .score {
-        font-family: Roboto Mono;
-        font-weight: bold;
-        font-size: 36px;
     }
 </style>
