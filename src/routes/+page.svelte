@@ -69,9 +69,9 @@
             margin: 0;
             overflow: hidden;
             --background: #2f5f85;
-            --offwhite: #d0d0d0;
+            --off-white: #d0d0d0;
             background: var(--background);
-            color: var(--offwhite);
+            color: var(--off-white);
             --blue: #87b4d8;
             --yellow: #d8d387;
             --green: #add0a3;

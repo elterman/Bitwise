@@ -9,6 +9,7 @@
 
 <style>
     .bit {
+        place-self: center;
         display: grid;
     }
 </style>

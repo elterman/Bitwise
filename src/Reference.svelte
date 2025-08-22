@@ -76,7 +76,7 @@
         width: 14px;
         aspect-ratio: 5/3;
         clip-path: polygon(0 0, 0 var(--s), 50% 100%, 100% var(--s), 100% 0, 50% calc(100% - var(--s)));
-        background: var(--offwhite);
+        background: var(--off-white);
         transition: 0.3s linear;
     }
 

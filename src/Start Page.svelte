@@ -5,6 +5,7 @@
     import PromptPanel from './Prompt Panel.svelte';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
+    import { range } from './utils';
 
     const loadGame = () => {
         const json = localStorage.getItem(ss.appKey());
@@ -37,7 +38,7 @@
         ss.turn = 1;
         ss.who_started = 1;
         ss.disabled_op = sample([OP_AND, OP_OR, OP_XOR]);
-        ss.queue = Array(QUEUE_SIZE).map(() => [sample([1, 0]), sample([1, 0])]);
+        ss.queue = range(QUEUE_SIZE).map(() => [sample([1, 0]), sample([1, 0])]);
 
         ss.page = GAME_PAGE;
     };

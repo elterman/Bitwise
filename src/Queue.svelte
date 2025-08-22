@@ -6,8 +6,8 @@
 </script>
 
 <div class="queue">
-    {#each ss.queue as cell, index (index)}
-        <Cell {cell} {index} />
+    {#each ss.queue as bits, index (index)}
+        <Cell {bits} {index} />
     {/each}
     <div class="label" style="grid-area: {QUEUE_SIZE - 1} / 1">
         <span>Input A</span>
@@ -24,8 +24,6 @@
         justify-self: center;
         display: grid;
         grid: repeat(10, 1fr) / auto;
-        border: solid var(--blue);
-        border-width: 1px 0 0 1px;
         box-sizing: border-box;
         width: 95px;
     }
