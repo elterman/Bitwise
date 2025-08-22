@@ -13,5 +13,6 @@
         font-family: UI;
         margin: 0 10px;
         filter: drop-shadow(0 0 3px #00000080);
+        color: var(--blue);
     }
 </style>

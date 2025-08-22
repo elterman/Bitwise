@@ -23,9 +23,9 @@
 <div class="op {op === ss.op ? 'selected' : ss.op || op === ss.last_op ? 'disabled' : ''}" onpointerdown={onOpSelect}>
     <div>{op}</div>
     <div class="output">
-        <XO x={b1} size={size} />
+        <XO x={b1} {size} />
         {#if ss.bits === 2}
-            <XO x={b2} size={size} />
+            <XO x={b2} {size} />
         {/if}
     </div>
 </div>
@@ -33,10 +33,12 @@
 <style>
     .op {
         display: grid;
-        gap: 5px;
         justify-items: center;
         cursor: pointer;
         transition: color 0.2s;
+        font-family: Title;
+        font-weight: bold;
+        font-size: 20px;
     }
 
     .op:hover {

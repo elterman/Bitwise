@@ -13,7 +13,7 @@
 
 <div class="player-panel">
     <img class="player" src={player === 1 ? Player1 : ss.opp === OPP_AI ? Robot : Player2} alt="" width={70} />
-    <span class="text">Player {player} scores when the result is</span>
+    <span class="text">Player {player} scores when the output is</span>
     <div class="bits">
         {#if player === 1}
             <XO x {size} />
@@ -47,6 +47,7 @@
         text-align: center;
         font-family: UI;
         font-size: 14px;
+        color: var(--blue);
     }
 
     .bits {
@@ -60,10 +61,5 @@
         font-family: Roboto Mono;
         font-weight: bold;
         font-size: 36px;
-        /* color: var(--green); */
-    }
-
-    .bit {
-        filter: invert(1) opacity(0.75);
     }
 </style>

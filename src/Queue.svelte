@@ -1,25 +1,20 @@
 <script>
     import Arrow from '$lib/images/Back.webp';
+    import Cell from './Cell.svelte';
+    import { QUEUE_SIZE } from './const';
     import { ss } from './state.svelte';
-
-    const classes = `cell ${ss.bits === 2 ? 'cell2' : ''}`;
 </script>
 
 <div class="queue">
-    <div class={classes}></div>
-    <div class={classes}></div>
-    <div class={classes}></div>
-    <div class={classes}></div>
-    <div class={classes}></div>
-    <div class={classes}></div>
-    <div class={classes}></div>
-    <div class={classes}></div>
-    <div class={classes}>
-        <span class="input">Input A</span>
+    {#each ss.queue as cell, index (index)}
+        <Cell {cell} {index} />
+    {/each}
+    <div class="label" style="grid-area: {QUEUE_SIZE - 1} / 1">
+        <span>Input A</span>
         <img class="arrow" src={Arrow} alt="" width={28} />
     </div>
-    <div class={classes}>
-        <span class="input">Input B</span>
+    <div class="label" style="grid-area: {QUEUE_SIZE} / 1">
+        <span>Input B</span>
         <img class="arrow" src={Arrow} alt="" width={28} />
     </div>
 </div>
@@ -32,37 +27,22 @@
         border: solid var(--blue);
         border-width: 1px 0 0 1px;
         box-sizing: border-box;
-        width: 101px;
+        width: 95px;
     }
 
-    .cell {
-        border: solid var(--blue);
-        border-width: 0 1px 1px 0;
-        box-sizing: border-box;
+    .label {
         display: grid;
-        place-content: center;
+        grid-auto-flow: column;
         align-items: center;
-    }
-
-    .cell2 {
-        grid: auto / 1fr 1fr;
-    }
-
-    .input {
-        grid-area: 1/1/1/span 2;
-        transform: translateX(-120px);
         font-family: UI;
         filter: drop-shadow(0 0 3px #00000080);
+        transform: translateX(-96px);
+        color: var(--blue);
     }
 
     .arrow {
-        grid-area: 1/1/1/span 2;
-        transform: translateX(-61px) scaleX(-1);
+        transform: scaleX(-1);
         opacity: 0.6;
         filter: drop-shadow(0 0 3px #00000080);
-    }
-
-    .x {
-        background: var(--yellow);
     }
 </style>
