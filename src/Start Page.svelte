@@ -21,7 +21,7 @@
             ss.score = job.score;
             ss.turn = job.turn;
             ss.who_started = job.who_started;
-            ss.disabled_op = job.disabled_op;
+            ss.last_op = job.last_op;
 
             return true;
         }
@@ -37,7 +37,7 @@
         ss.score = [0, 0];
         ss.turn = 1;
         ss.who_started = 1;
-        ss.disabled_op = sample([OP_AND, OP_OR, OP_XOR]);
+        ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
         ss.queue = range(QUEUE_SIZE).map(() => [sample([1, 0]), sample([1, 0])]);
 
         ss.page = GAME_PAGE;

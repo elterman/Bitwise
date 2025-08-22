@@ -11,5 +11,6 @@
     .bit {
         place-self: center;
         display: grid;
+        transition: width 0.3s;
     }
 </style>

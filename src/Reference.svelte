@@ -1,10 +1,9 @@
 <script>
+    import { ss } from './state.svelte';
     import XO from './XO.svelte';
 
-    let open = $state(false);
-
     const onClick = () => {
-        open = !open;
+        ss.open = !ss.open;
     };
 
     const size = 11;
@@ -13,9 +12,9 @@
 <div class="reference">
     <div class="panel" onpointerdown={onClick}>
         <span class="header">BITWISE OPERATOR REFERENCE</span>
-        <span class="chevron {open ? 'flipped' : ''}"></span>
+        <span class="chevron {ss.open ? 'flipped' : ''}"></span>
     </div>
-    <div class="table-container {open ? 'open' : ''}">
+    <div class="table-container {ss.open ? 'open' : ''}">
         <div class="table">
             <div class="cell input" style="grid-area: 1/1">Input A</div>
             <div class="cell input" style="grid-area: 1/2">Input B</div>

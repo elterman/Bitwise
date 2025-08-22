@@ -7,7 +7,7 @@ export const log = (value) => console.log($state.snapshot(value));
 export const persist = () => {
     const json = JSON.stringify({
         ..._stats, ..._sound, queue: ss.queue, score: ss.score,
-        turn: ss.turn, who_started: ss.who_started, disabled_op: ss.disabled_op,
+        turn: ss.turn, who_started: ss.who_started, last_op: ss.last_op,
     });
 
     localStorage.setItem(APP_STATE, json);
