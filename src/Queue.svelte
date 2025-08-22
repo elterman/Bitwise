@@ -1,21 +1,24 @@
 <script>
     import Arrow from '$lib/images/Back.webp';
+    import { ss } from './state.svelte';
+
+    const classes = `cell ${ss.bits === 2 ? 'cell2' : ''}`;
 </script>
 
 <div class="queue">
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell">
+    <div class={classes}></div>
+    <div class={classes}></div>
+    <div class={classes}></div>
+    <div class={classes}></div>
+    <div class={classes}></div>
+    <div class={classes}></div>
+    <div class={classes}></div>
+    <div class={classes}></div>
+    <div class={classes}>
         <span class="input">Input A</span>
         <img class="arrow" src={Arrow} alt="" width={28} />
     </div>
-    <div class="cell">
+    <div class={classes}>
         <span class="input">Input B</span>
         <img class="arrow" src={Arrow} alt="" width={28} />
     </div>
@@ -41,17 +44,25 @@
         align-items: center;
     }
 
+    .cell2 {
+        grid: auto / 1fr 1fr;
+    }
+
     .input {
-        grid-area: 1/1;
+        grid-area: 1/1/1/span 2;
         transform: translateX(-120px);
         font-family: UI;
         filter: drop-shadow(0 0 3px #00000080);
     }
 
     .arrow {
-        grid-area: 1/1;
+        grid-area: 1/1/1/span 2;
         transform: translateX(-61px) scaleX(-1);
         opacity: 0.6;
         filter: drop-shadow(0 0 3px #00000080);
+    }
+
+    .x {
+        background: var(--yellow);
     }
 </style>

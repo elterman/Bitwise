@@ -1,12 +1,13 @@
-import { START_PAGE } from './const';
+import { APP_STATE, START_PAGE } from './const';
 import { OPP_AI, PROMPT_TRANSITION } from './const';
 import { post } from './utils';
 
 export const ss = $state({
     bits: 1,
     opp: OPP_AI,
+    score: [0, 0],
+    appKey: () => `${APP_STATE} • ${ss.bits} • ${ss.opp}`,
     page: START_PAGE,
-    score: [0,0],
 });
 
 export const _prompt = $state({

@@ -98,10 +98,6 @@
             -ms-user-select: none;
             user-select: none;
         }
-
-        .xo {
-            filter: grayscale(1) invert(1) brightness(1.7);
-        }
     }
 
     .app {

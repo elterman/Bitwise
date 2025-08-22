@@ -1,8 +1,46 @@
 <script>
+    import { sample } from 'lodash-es';
     import { fade } from 'svelte/transition';
-    import { GAME_PAGE, OPP_AI, OPP_FRIEND, START_PAGE } from './const';
+    import { GAME_PAGE, OP_AND, OP_OR, OP_XOR, OPP_AI, OPP_FRIEND, QUEUE_SIZE, START_PAGE } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { ss } from './state.svelte';
+    import { _sound } from './sound.svelte';
+    import { _stats, ss } from './state.svelte';
+
+    const loadGame = () => {
+        const json = localStorage.getItem(ss.appKey());
+        const job = JSON.parse(json);
+
+        if (job) {
+            _sound.sfx = job.sfx;
+            _sound.music = job.music;
+
+            _stats.plays = job.plays;
+
+            ss.queue = job.queue;
+            ss.score = job.score;
+            ss.turn = job.turn;
+            ss.who_started = job.who_started;
+            ss.disabled_op = job.disabled_op;
+
+            return true;
+        }
+
+        return false;
+    };
+
+    const onPlay = () => {
+        if (loadGame()) {
+            return;
+        }
+
+        ss.score = [0, 0];
+        ss.turn = 1;
+        ss.who_started = 1;
+        ss.disabled_op = sample([OP_AND, OP_OR, OP_XOR]);
+        ss.queue = Array(QUEUE_SIZE).map(() => [sample([1, 0]), sample([1, 0])]);
+
+        ss.page = GAME_PAGE;
+    };
 
     const onBits = (bits) => {
         ss.bits = bits;
@@ -10,10 +48,6 @@
 
     const onOpp = (opp) => {
         ss.opp = opp;
-    };
-
-    const onPlay = () => {
-        ss.page = GAME_PAGE;
     };
 </script>
 
