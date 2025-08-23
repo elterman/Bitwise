@@ -3,6 +3,7 @@
     import Player1 from '$lib/images/Human Yellow.webp';
     import Robot from '$lib/images/Robot.webp';
     import { OPP_AI } from './const';
+    import { valueColor } from './shared.svelte';
     import { ss } from './state.svelte';
     import XO from './XO.svelte';
 
@@ -22,7 +23,7 @@
         width={70}
         onpointerdown={onClick} />
     <span class="text">Player {player} scores when the output is</span>
-    <div class="bits">
+    <div class="bits {valueColor(player === 1 ? [1, 0] : [0, 1])}">
         {#if player === 1}
             <XO x {size} />
             {#if ss.bits === 2}
@@ -75,6 +76,7 @@
         grid-auto-flow: column;
         gap: 10px;
         align-items: center;
+        padding: 8px 10px;
     }
 
     .spin {

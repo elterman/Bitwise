@@ -6,7 +6,7 @@
 <div class="score">
     <NumberFlowGroup>
         <div class="flow" style=" --number-flow-mask-height: 0em;">
-            <NumberFlow value={ss.score[0]} />
+            <NumberFlow value={ss.score[0]} style='margin-right: -2px;'/>
             <NumberFlow prefix=":" value={ss.score[1]} />
         </div>
     </NumberFlowGroup>
@@ -20,7 +20,6 @@
         font-family: Roboto Mono;
         font-size: 36px;
         font-weight: bold;
-        color: white;
         transform: translateY(15px);
     }
 

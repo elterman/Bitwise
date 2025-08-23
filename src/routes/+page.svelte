@@ -4,6 +4,8 @@
     import Frame from '$lib/images/Frame.webp';
     import StartPage from '../Start Page.svelte';
     import GamePage from '../Game Page.svelte';
+    import { ss } from '../state.svelte';
+    import { START_PAGE } from '../const';
 
     let scale = $state(1);
 
@@ -50,7 +52,7 @@
     {#if splash}
         <Splash />
     {:else}
-        <div class="content" style="scale: {scale};">
+        <div class="content {ss.page === START_PAGE ? 'start-page' : ''}" style="scale: {scale};">
             <img class="frame" src={Frame} alt="" />
             <GamePage />
             <StartPage />
@@ -75,6 +77,22 @@
             --blue: #87b4d8;
             --yellow: #d8d387;
             --green: #add0a3;
+        }
+
+        .off-white {
+            background: var(--off-white);
+        }
+
+        .yellow {
+            background: var(--yellow);
+        }
+
+        .blue {
+            background: var(--blue);
+        }
+
+        .green {
+            background: var(--green);
         }
 
         .button-base {
@@ -122,6 +140,12 @@
         background: #2f5d84;
         background-image: radial-gradient(transparent, black 150%);
     }
+
+    .start-page {
+        background: #135c99;
+        background-image: radial-gradient(transparent, black 150%), url('$lib/images/Texture.webp');
+        background-size: 407px 750px;
+  }
 
     .frame {
         grid-area: 1/1;

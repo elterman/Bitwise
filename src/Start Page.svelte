@@ -7,6 +7,8 @@
     import { _stats, ss } from './state.svelte';
     import { range } from './utils';
     import { newBits } from './shared.svelte';
+    import OppAI from '$lib/images/Opponent AI.webp';
+    import OppFriend from '$lib/images/Opponent Friend.webp';
 
     const loadGame = () => {
         const json = localStorage.getItem(ss.appKey());
@@ -30,7 +32,9 @@
         return false;
     };
 
-    const onPlay = () => {
+    const onPlay = (opp) => {
+        ss.opp = opp;
+
         if (loadGame()) {
             return;
         }
@@ -40,12 +44,7 @@
         ss.who_started = 1;
         ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
         ss.queue = range(QUEUE_SIZE).map(() => newBits());
-
         ss.page = GAME_PAGE;
-    };
-
-    const onOpp = (opp) => {
-        ss.opp = opp;
     };
 </script>
 
@@ -55,14 +54,9 @@
             <span>BITWISE</span>
             <span class="subtitle">Use your bits wisely.</span>
         </div>
-        <div class="ops-box opps">
-            <span class="subtitle">opponent:</span>
-            <div class="ops">
-                <span class="op {ss.opp === OPP_FRIEND ? 'op-selected' : ''}" onpointerdown={() => onOpp(OPP_FRIEND)}>Friend</span>
-                <span class="op {ss.opp === OPP_AI ? 'op-selected' : ''}" onpointerdown={() => onOpp(OPP_AI)}>AI</span>
-            </div>
-        </div>
-        <PromptPanel ops={[{ label: 'play', onClick: onPlay }]} />
+        <div></div>
+        <img src={OppAI} alt="" width="100" onpointerdown={() => onPlay(OPP_AI)} />
+        <img src={OppFriend} alt="" width="100" onpointerdown={() => onPlay(OPP_FRIEND)} />
     </div>
 {/if}
 
@@ -72,7 +66,7 @@
         grid-area: 1/1;
         display: grid;
         gap: 50px;
-        filter: drop-shadow(0 0 5px black);
+        justify-items: center;
     }
 
     .title {
@@ -82,6 +76,7 @@
         display: grid;
         justify-items: center;
         color: #ffffffd0;
+        filter: drop-shadow(0 0 5px black);
     }
 
     .subtitle {
@@ -90,43 +85,13 @@
         font-weight: normal;
     }
 
-    .ops-box {
-        display: grid;
-        gap: 10px;
-    }
-
-    .modes {
-        margin-top: 50px;
-    }
-
-    .opps {
-        margin-bottom: 50px;
-        font-family: UI;
-    }
-
-    .ops {
-        place-self: center;
-        display: grid;
-        grid-auto-flow: column;
-        gap: 30px;
-        font-family: Title;
-        font-size: 24px;
-    }
-
-    .op {
+    img {
         cursor: pointer;
-        font-family: UI;
-        font-size: 28px;
+        filter: drop-shadow(0 0 5px black);
+        transition: filter 0.2s;
     }
 
-    .op:hover {
-        color: white;
-    }
-
-    .op-selected {
-        pointer-events: none;
-        /* text-decoration: overline; */
-        font-weight: bold;
-        color: white;
+    img:hover {
+        filter: drop-shadow(0 0 5px white);
     }
 </style>

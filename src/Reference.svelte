@@ -7,6 +7,7 @@
     };
 
     const size = 11;
+    const filter = 'invert(1) opacity(0.75)';
 </script>
 
 <div class="reference">
@@ -21,26 +22,26 @@
             <div class="cell" style="grid-area: 1/3">AND</div>
             <div class="cell" style="grid-area: 1/4">OR</div>
             <div class="cell" style="grid-area: 1/5">XOR</div>
-            <div class="cell input" style="grid-area: 2/1"><XO size={size} /></div>
-            <div class="cell input" style="grid-area: 2/2"><XO size={size} /></div>
-            <div class="cell" style="grid-area: 2/3"><XO size={size} /></div>
-            <div class="cell" style="grid-area: 2/4"><XO size={size} /></div>
-            <div class="cell" style="grid-area: 2/5"><XO size={size} /></div>
-            <div class="cell input" style="grid-area: 3/1"><XO size={size} /></div>
-            <div class="cell input" style="grid-area: 3/2"><XO x size={size} /></div>
-            <div class="cell" style="grid-area: 3/3"><XO size={size} /></div>
-            <div class="cell" style="grid-area: 3/4"><XO x size={size} /></div>
-            <div class="cell" style="grid-area: 3/5"><XO x size={size} /></div>
-            <div class="cell input" style="grid-area: 4/1"><XO x size={size} /></div>
-            <div class="cell input" style="grid-area: 4/2"><XO size={size} /></div>
-            <div class="cell" style="grid-area: 4/3"><XO size={size} /></div>
-            <div class="cell" style="grid-area: 4/4"><XO x size={size} /></div>
-            <div class="cell" style="grid-area: 4/5"><XO x size={size} /></div>
-            <div class="cell input" style="grid-area: 5/1"><XO x size={size} /></div>
-            <div class="cell input" style="grid-area: 5/2"><XO x size={size} /></div>
-            <div class="cell" style="grid-area: 5/3"><XO x size={size} /></div>
-            <div class="cell" style="grid-area: 5/4"><XO x size={size} /></div>
-            <div class="cell" style="grid-area: 5/5"><XO size={size} /></div>
+            <div class="cell input" style="grid-area: 2/1"><XO size={size} {filter} /></div>
+            <div class="cell input" style="grid-area: 2/2"><XO size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 2/3"><XO size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 2/4"><XO size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 2/5"><XO size={size} {filter} /></div>
+            <div class="cell input" style="grid-area: 3/1"><XO size={size} {filter} /></div>
+            <div class="cell input" style="grid-area: 3/2"><XO x size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 3/3"><XO size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 3/4"><XO x size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 3/5"><XO x size={size} {filter} /></div>
+            <div class="cell input" style="grid-area: 4/1"><XO x size={size} {filter} /></div>
+            <div class="cell input" style="grid-area: 4/2"><XO size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 4/3"><XO size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 4/4"><XO x size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 4/5"><XO x size={size} {filter} /></div>
+            <div class="cell input" style="grid-area: 5/1"><XO x size={size} {filter} /></div>
+            <div class="cell input" style="grid-area: 5/2"><XO x size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 5/3"><XO x size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 5/4"><XO x size={size} {filter} /></div>
+            <div class="cell" style="grid-area: 5/5"><XO size={size} {filter} /></div>
         </div>
     </div>
 </div>

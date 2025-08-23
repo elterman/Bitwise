@@ -1,7 +1,7 @@
 {
   "short_name": "Bitwise. Use your bits wisely.",
   "name": "Bitwise. Use your bits wisely.",
-  "description": "Destroy counterfeit bills as soon as they hit circulation. ",
+  "description": "Apply bitwise operators strategiucally to produce the desired output and outperform your opponent.",
   "dir": "ltr",
   "lang": "en",
   "orientation": "portrait",
@@ -458,6 +458,6 @@
   "id": "/",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#70806b",
-  "background_color": "#70806b"
+  "theme_color": "#2f5d84",
+  "background_color": "#2f5d84"
 }

@@ -1,10 +1,9 @@
 <script>
-    import { sample } from 'lodash-es';
     import { QUEUE_SIZE } from './const';
+    import { newBits, valueColor } from './shared.svelte';
     import { ss } from './state.svelte';
     import { post } from './utils';
     import XO from './XO.svelte';
-    import { newBits } from './shared.svelte';
 
     const { op } = $props();
 
@@ -53,11 +52,12 @@
     };
 
     const size = 14;
+    const disabled = $derived(ss.op || op === ss.last_op);
 </script>
 
-<div class="op {op === ss.op ? 'selected' : ss.op || op === ss.last_op ? 'disabled' : ''}" onpointerdown={onOpSelect}>
+<div class="op {op === ss.op ? 'selected' : disabled ? 'disabled' : ''}" onpointerdown={onOpSelect}>
     <div>{op}</div>
-    <div class="output">
+    <div class="bits {valueColor(output)} {disabled ? 'bits-disabled' : ''}">
         <XO x={output[0]} {size} />
         {#if ss.bits === 2}
             <XO x={output[1]} {size} />
@@ -92,9 +92,14 @@
         color: white;
     }
 
-    .output {
+    .bits {
         display: grid;
         grid-auto-flow: column;
         gap: 5px;
+        padding: 4px 6px;
+    }
+
+    .bits-disabled {
+        background: #ffffff60;
     }
 </style>
