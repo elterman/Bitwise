@@ -1,29 +1,12 @@
 <script>
     import { QUEUE_SIZE } from './const';
-    import { newBits, valueColor } from './shared.svelte';
+    import { fn, newBits, valueColor } from './shared.svelte';
     import { ss } from './state.svelte';
     import { post } from './utils';
     import XO from './XO.svelte';
 
     const { op } = $props();
-
-    const fn = () => {
-        const bits1 = ss.queue[QUEUE_SIZE - 1];
-        const bits2 = ss.queue[QUEUE_SIZE - 2];
-
-        switch (op) {
-            case 'AND':
-                return [bits1[0] & bits2[0], bits1[1] & bits2[1]];
-            case 'OR':
-                return [bits1[0] | bits2[0], bits1[1] | bits2[1]];
-            case 'XOR':
-                return [bits1[0] ^ bits2[0], bits1[1] ^ bits2[1]];
-            default:
-                return [0, 0];
-        }
-    };
-
-    let output = $derived(fn());
+    let output = $derived(fn(op));
 
     const onOpSelect = () => {
         ss.op = op;

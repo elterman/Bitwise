@@ -1,5 +1,5 @@
 import { sample } from 'lodash-es';
-import { APP_STATE } from './const';
+import { APP_STATE, QUEUE_SIZE } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
 
@@ -26,3 +26,21 @@ export const valueColor = (bits) => {
 };
 
 export const newBits = () => sample([[0, 0], [0, 1], [1, 0], [1, 1]]);
+
+export const xoSize = () => ss.show_reference ? 21 : 20;
+
+export const fn = (op) => {
+    const bits1 = ss.queue[QUEUE_SIZE - 1];
+    const bits2 = ss.queue[QUEUE_SIZE - 2];
+
+    switch (op) {
+        case 'AND':
+            return [bits1[0] & bits2[0], bits1[1] & bits2[1]];
+        case 'OR':
+            return [bits1[0] | bits2[0], bits1[1] | bits2[1]];
+        case 'XOR':
+            return [bits1[0] ^ bits2[0], bits1[1] ^ bits2[1]];
+        default:
+            return [0, 0];
+    }
+};

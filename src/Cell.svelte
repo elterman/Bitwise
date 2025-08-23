@@ -1,18 +1,29 @@
 <script>
-    import { ss } from './state.svelte';
-    import { valueColor } from './shared.svelte';
-    import XO from './XO.svelte';
     import { QUEUE_SIZE } from './const';
+    import { xoSize } from './shared.svelte';
+    import { ss } from './state.svelte';
+    import XO from './XO.svelte';
 
     const { bits, index } = $props();
 
     const filter = 'invert(0.25)';
-    const size = $derived(ss.show_reference ? 21 : 20);
+    const size = xoSize();
     const b1 = bits[0];
     const b2 = bits[1];
-    const classes = $derived(
-        `cell ${ss.bits === 2 ? 'double-cell' : ''} ${index < QUEUE_SIZE - 2 ? 'default-background' : ''}`,
-    );
+
+    const classes = $derived.by(() => {
+        const input = index > QUEUE_SIZE - 3;
+
+        let classes = `cell ${ss.bits === 2 ? 'double-cell' : ''} `;
+
+        if (!input) {
+            classes += 'default-background ';
+        } else if (ss.new) {
+            classes += 'shift ';
+        }
+
+        return classes;
+    });
 </script>
 
 <div class={classes} style="grid-area: {index + 1} / 1">
@@ -32,6 +43,7 @@
         place-content: center;
         align-items: center;
         background: #fff8;
+        transition: transform 0.35s linear;
     }
 
     .default-background {
@@ -41,5 +53,9 @@
     .double-cell {
         grid: auto / 1fr 1fr;
         padding: 0 6px;
+    }
+
+    .shift {
+        transform: translateX(calc(-100% - 1px));
     }
 </style>
