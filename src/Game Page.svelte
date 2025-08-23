@@ -1,17 +1,18 @@
 <script>
     import { onMount } from 'svelte';
+    import { fade } from 'svelte/transition';
+    import Hand from './Hand.svelte';
     import Instructions from './Instructions.svelte';
-    import QueueArea from './Queue Area.svelte';
+    import Operators from './Operators.svelte';
     import Prompt from './Prompt.svelte';
+    import QueueArea from './Queue Area.svelte';
+    import Reference from './Reference.svelte';
     import Stats from './Stats.svelte';
     import Toolbar from './Toolbar.svelte';
     import { APP_STATE, GAME_PAGE } from './const';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
-    import Operators from './Operators.svelte';
-    import Reference from './Reference.svelte';
-    import { fade } from 'svelte/transition';
 
     onMount(() => {
         const loadGame = () => {
@@ -34,6 +35,7 @@
         <Stats />
         <Reference />
         <QueueArea />
+        <Hand/>
         <Operators />
         <Instructions />
         <Prompt />

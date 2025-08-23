@@ -75,7 +75,7 @@
             background: var(--background);
             color: var(--off-white);
             --blue: #87b4d8;
-            --yellow: #d8d387;
+            --yellow: #f9d6a2;
             --green: #add0a3;
         }
 

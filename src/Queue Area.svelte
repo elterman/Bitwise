@@ -14,6 +14,7 @@
 
 <style>
     .queue-area {
+        grid-area: 3/1;
         display: grid;
         grid: auto / auto 1fr auto;
         gap: 10px;
