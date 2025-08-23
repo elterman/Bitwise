@@ -37,6 +37,7 @@
 
 <style>
     .cell {
+        --duration: 350ms;
         box-sizing: border-box;
         border: solid #00000080;
         border-width: 0 0 1px;
@@ -45,11 +46,13 @@
         place-content: center;
         align-items: center;
         background: #fff8;
-        transition: transform 350ms linear, background-color 350ms linear;
+        transition:
+            transform var(--duration) linear,
+            background-color var(--duration) linear;
     }
 
     .delay {
-        transition-delay: 350ms;
+        transition-delay: var(--duration);
     }
 
     .default-background {

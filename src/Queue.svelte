@@ -8,7 +8,7 @@
     import { fn, valueColor, xoSize } from './shared.svelte';
     import XO from './XO.svelte';
 
-    const grid = `repeat(${QUEUE_SIZE}, 46px)/auto;`;
+    const grid = `repeat(${QUEUE_SIZE}, 50px)/auto;`;
 </script>
 
 <div class="queue" style="grid: {grid}">
@@ -24,11 +24,12 @@
         <img class="arrow" src={Arrow} alt="" width={28} />
     </div>
     {#if ss.new}
+        {@const duration = 350}
         {@const output = fn(ss.op)}
         {@const classes = `cell default-background ${ss.bits === 2 ? 'double-cell' : ''}`}
         {@const outputClasses = `cell ${ss.bits === 2 ? 'double-cell' : ''} ${valueColor(output)}`}
-        {@const newParams = { y: '-100%', opacity: 1, duration: 350, delay: 350, easing: linear }}
-        {@const outputParams = { x: '100%', opacity: 1, duration: 350, easing: linear }}
+        {@const newParams = { y: '-100%', opacity: 1, duration, delay: duration, easing: linear }}
+        {@const outputParams = { x: '100%', opacity: 1, duration, easing: linear }}
         {@const size = xoSize()}
         {@const filter = 'invert(0.25)'}
         <div class={outputClasses} style="grid-area: {QUEUE_SIZE}/1" in:fly={outputParams}>
