@@ -10,7 +10,7 @@
     let output = $derived(fn(op));
 
     const onClick = () => {
-        _sound.play('click');
+        _sound.play('tap');
         ss.op = op;
 
         const score = [...ss.score];

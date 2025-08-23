@@ -1,5 +1,5 @@
 <script>
-    import { sample } from 'lodash-es';
+    import { random, sample } from 'lodash-es';
     import { fade } from 'svelte/transition';
     import { GAME_PAGE, OP_AND, OP_OR, OP_XOR, OPP_AI, OPP_FRIEND, QUEUE_SIZE, START_PAGE } from './const';
     import PromptPanel from './Prompt Panel.svelte';
@@ -39,8 +39,10 @@
             return;
         }
 
+        _sound.play('dice');
+
         ss.score = [0, 0];
-        ss.turn = 1;
+        ss.turn = 2 - Date.now() % 2;
         ss.who_started = 1;
         ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
         ss.queue = range(QUEUE_SIZE).map(() => newBits());

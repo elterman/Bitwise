@@ -50,6 +50,7 @@
     .player {
         place-self: center;
         cursor: pointer;
+        pointer-events: none;
     }
 
     .disabled {
