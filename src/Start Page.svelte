@@ -1,14 +1,13 @@
 <script>
-    import { random, sample } from 'lodash-es';
+    import OppAI from '$lib/images/Opponent AI.webp';
+    import OppFriend from '$lib/images/Opponent Friend.webp';
+    import { sample } from 'lodash-es';
     import { fade } from 'svelte/transition';
     import { GAME_PAGE, OP_AND, OP_OR, OP_XOR, OPP_AI, OPP_FRIEND, QUEUE_SIZE, START_PAGE } from './const';
-    import PromptPanel from './Prompt Panel.svelte';
+    import { newBits } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { range } from './utils';
-    import { newBits } from './shared.svelte';
-    import OppAI from '$lib/images/Opponent AI.webp';
-    import OppFriend from '$lib/images/Opponent Friend.webp';
 
     const loadGame = () => {
         const json = localStorage.getItem(ss.appKey());

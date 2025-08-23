@@ -56,7 +56,7 @@
 
 <div class="op {op === ss.op ? 'selected' : disabled ? 'disabled' : ''}" onpointerdown={onClick}>
     <div>{op}</div>
-    <div class="bits {valueColor(output)} {disabled ? 'bits-disabled' : ''}">
+    <div class="bits {valueColor(output)}">
         <XO x={output[0]} {size} />
         {#if ss.bits === 2}
             <XO x={output[1]} {size} />
@@ -96,9 +96,5 @@
         grid-auto-flow: column;
         gap: 5px;
         padding: 4px 6px;
-    }
-
-    .bits-disabled {
-        background: #ffffff60;
     }
 </style>
