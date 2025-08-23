@@ -1,12 +1,12 @@
 {
   "workbench.colorCustomizations": /*light*/ {
-    "titleBar.activeBackground": "#b1ffad",
-    "titleBar.inactiveBackground": "#b1ffad",
-    "tab.inactiveBackground": "#a4eba0",
+    "titleBar.activeBackground": "#adeaff",
+    "titleBar.inactiveBackground": "#adeaff",
+    "tab.inactiveBackground": "#5ba8c280",
     "sideBar.background": "#F8F8F8",
     "terminal.background": "#F8F8F8"
   },
-  "workbench.colorCustomizations": /*dark*/ {
+  "-workbench.colorCustomizations": /*dark*/ {
     "titleBar.activeBackground": "#566c7f",
     "titleBar.inactiveBackground": "#566c7f",
     "tab.inactiveBackground": "#566c7f80",
