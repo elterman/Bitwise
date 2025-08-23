@@ -25,14 +25,22 @@
     </div>
     {#if ss.new}
         {@const output = fn(ss.op)}
-        {@const classes = `cell ${ss.bits === 2 ? 'double-cell' : ''} ${valueColor(output)}`}
-        {@const params = { x: 95, opacity: 1, duration: 350, easing: linear }}
+        {@const classes = `cell default-background ${ss.bits === 2 ? 'double-cell' : ''}`}
+        {@const outputClasses = `cell ${ss.bits === 2 ? 'double-cell' : ''} ${valueColor(output)}`}
+        {@const newParams = { y: '-100%', opacity: 1, duration: 350, delay: 350, easing: linear }}
+        {@const outputParams = { x: '100%', opacity: 1, duration: 350, easing: linear }}
         {@const size = xoSize()}
         {@const filter = 'invert(0.25)'}
-        <div class={classes} style="grid-area: {QUEUE_SIZE}/1" in:fly={params}>
+        <div class={outputClasses} style="grid-area: {QUEUE_SIZE}/1" in:fly={outputParams}>
             <XO x={output[0]} {size} {filter} />
             {#if ss.bits === 2}
                 <XO x={output[1]} {size} {filter} />
+            {/if}
+        </div>
+        <div class={classes} style="grid-area: 1/1" in:fly={newParams}>
+            <XO x={ss.new[0]} {size} {filter} />
+            {#if ss.bits === 2}
+                <XO x={ss.new[1]} {size} {filter} />
             {/if}
         </div>
     {/if}
@@ -77,5 +85,9 @@
     .double-cell {
         grid: auto / 1fr 1fr;
         padding: 0 6px;
+    }
+
+    .default-background {
+        background: #ffffff60;
     }
 </style>

@@ -44,7 +44,7 @@
 
             delete ss.new;
             delete ss.op;
-        }, 2000);
+        }, 750);
     };
 
     const size = 14;
