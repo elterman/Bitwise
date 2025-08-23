@@ -2,7 +2,7 @@
 </script>
 
 <div class="instr">
-    Combine the two inputs from the queue by applying an available operator above. The inputs will be replaced with the output.
+    Combine the two inputs from the queue by applying an available operator. The inputs will be replaced with the output. The selected operator will be unavailable on the next turn.
 </div>
 
 <style>

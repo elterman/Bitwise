@@ -28,6 +28,8 @@
     const onOpSelect = () => {
         ss.op = op;
 
+        const score = [...ss.score];
+
         if (ss.bits === 1) {
             ss.score[output[0] === 1 ? 0 : 1] += 1;
         } else {
@@ -38,7 +40,13 @@
             }
         }
 
-        ss.turn = 3 - ss.turn;
+        if (ss.score[0] > score[0]){
+            ss.turn = 1;
+        } else if (ss.score[1] > score[1]){
+            ss.turn = 2;
+        } else {
+            ss.turn = 3 - ss.turn;
+        }
 
         const que = [...ss.queue];
         que.unshift(newBits());

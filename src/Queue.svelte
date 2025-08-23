@@ -4,7 +4,7 @@
     import { QUEUE_SIZE } from './const';
     import { ss } from './state.svelte';
 
-    const grid = `repeat(${QUEUE_SIZE}, 50px) / auto;`;
+    const grid = `repeat(${QUEUE_SIZE}, 46px) / auto;`;
 </script>
 
 <div class="queue" style="grid: {grid}">
