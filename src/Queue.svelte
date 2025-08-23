@@ -36,7 +36,7 @@
         align-items: center;
         font-family: UI;
         filter: drop-shadow(0 0 3px #00000080);
-        transform: translateX(-96px);
+        transform: translateX(-102px);
         color: var(--blue);
     }
 

@@ -50,15 +50,18 @@
             ss.turn = 3 - ss.turn;
         }
 
-        const que = [...ss.queue];
-        que.unshift(newBits());
-        que.splice(QUEUE_SIZE - 1, 2, output);
-        ss.queue = que;
+        ss.new = newBits();
 
         post(() => {
+            const que = [...ss.queue];
+            que.unshift(ss.new);
+            que.splice(QUEUE_SIZE - 1, 2, output);
+            ss.queue = que;
             ss.last_op = op;
+
+            delete ss.new;
             delete ss.op;
-        }, 0);
+        }, 2000);
     };
 
     const size = 14;
