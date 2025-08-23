@@ -16,10 +16,12 @@
 
         let classes = `cell ${ss.bits === 2 ? 'double-cell' : ''} `;
 
-        if (!input) {
+        if (!input && (index < QUEUE_SIZE - 3 || !ss.new)) {
             classes += 'default-background ';
-        } else if (ss.new) {
-            classes += 'shift ';
+        }
+
+        if (ss.new) {
+            classes += input ? 'shift-left ' : 'shift-down delay ';
         }
 
         return classes;
@@ -43,7 +45,11 @@
         place-content: center;
         align-items: center;
         background: #fff8;
-        transition: transform 0.35s linear;
+        transition: transform 350ms linear, background-color 350ms linear;
+    }
+
+    .delay {
+        transition-delay: 350ms;
     }
 
     .default-background {
@@ -55,7 +61,11 @@
         padding: 0 6px;
     }
 
-    .shift {
+    .shift-left {
         transform: translateX(calc(-100% - 1px));
+    }
+
+    .shift-down {
+        transform: translateY(100%);
     }
 </style>
