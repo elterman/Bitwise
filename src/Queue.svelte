@@ -16,12 +16,12 @@
         <Cell {bits} {index} />
     {/each}
     {#if ss.new}
-        {@const duration = 350}
         {@const output = fn(ss.op)}
         {@const newClasses = `cell default-background ${ss.bits === 2 ? 'double-cell' : ''}`}
         {@const outputClasses = `cell ${ss.bits === 2 ? 'double-cell' : ''} ${valueColor(output)}`}
+        {@const duration = 350}
         {@const newParams = { y: '-100%', opacity: 1, duration, delay: duration + 150, easing: linear }}
-        {@const outputParams = { x: '100%', opacity: 1, duration: 500, delay: 200, easing: linear }}
+        {@const outputParams = { x: '100%', opacity: 1, duration: duration + 150, easing: linear }}
         {#snippet cell(classes, params, bits, row)}
             {@const size = xoSize()}
             {@const filter = 'invert(0.25)'}

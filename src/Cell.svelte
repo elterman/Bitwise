@@ -66,6 +66,7 @@
 
     .shift-left {
         transform: translateX(calc(-100% - 1px));
+        transition-timing-function: linear;
     }
 
     .shift-down {
