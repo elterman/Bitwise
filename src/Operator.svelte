@@ -28,6 +28,18 @@
     const onOpSelect = () => {
         ss.op = op;
 
+        if (ss.bits === 1) {
+            ss.score[output[0] === 1 ? 0 : 1] += 1;
+        } else {
+            if (output[0] === 1 && output[1] === 0) {
+                ss.score[0] += 1;
+            } else if (output[0] === 0 && output[1] === 1) {
+                ss.score[1] += 1;
+            }
+        }
+
+        ss.turn = 3 - ss.turn;
+
         const que = [...ss.queue];
         que.unshift([sample([1, 0]), sample([1, 0])]);
         que.splice(QUEUE_SIZE - 1, 2, output);
@@ -36,7 +48,7 @@
         post(() => {
             ss.last_op = op;
             delete ss.op;
-        }, 1000);
+        }, 0);
     };
 
     const size = 14;
