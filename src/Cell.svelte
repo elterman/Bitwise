@@ -11,7 +11,7 @@
     const b1 = bits[0];
     const b2 = bits[1];
     const classes = $derived(
-        `cell ${ss.bits === 2 ? 'double-cell' : ''} ${index < QUEUE_SIZE - 2 ? 'default-background' : valueColor(bits)}`,
+        `cell ${ss.bits === 2 ? 'double-cell' : ''} ${index < QUEUE_SIZE - 2 ? 'default-background' : ''}`,
     );
 </script>
 
@@ -31,6 +31,7 @@
         grid-auto-flow: column;
         place-content: center;
         align-items: center;
+        background: #fff8;
     }
 
     .default-background {
