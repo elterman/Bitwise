@@ -77,6 +77,7 @@
             --blue: #87b4d8;
             --yellow: #d8d387;
             --green: #add0a3;
+            --lightyellow: #aab5aa;
         }
 
         .off-white {

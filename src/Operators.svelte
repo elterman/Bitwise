@@ -2,10 +2,11 @@
     import Arrow from '$lib/images/Back.webp';
     import { OP_AND, OP_OR, OP_XOR } from './const';
     import Operator from './Operator.svelte';
+    import { ss } from './state.svelte';
 </script>
 
 <div class="operators">
-    <div class="labels">
+    <div class="labels {ss.turn === 1 ? 'y' : 'b'}">
         <div class="label">
             <span>Operators</span>
             <img class="arrow" src={Arrow} alt="" width={28} />
@@ -32,6 +33,7 @@
     .labels {
         display: grid;
         font-family: UI;
+        transition: color 1s;
     }
 
     .label {
@@ -41,6 +43,13 @@
         grid-auto-flow: column;
         align-items: center;
         text-align: end;
+    }
+
+    .y {
+        color: var(--lightyellow);
+    }
+
+    .b {
         color: var(--blue);
     }
 

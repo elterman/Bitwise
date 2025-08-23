@@ -37,7 +37,7 @@
     {/if}
 </div>
 
-<div class="queue" style="grid: {grid}">
+<div class="queue {ss.turn === 1 ? 'y' : 'b'}" style="grid: {grid}">
     <div class="label" style="grid-area: {QUEUE_SIZE - 1}/1">
         <span>Input A</span>
         <img class="arrow" src={Arrow} alt="" width={28} />
@@ -55,6 +55,7 @@
         display: grid;
         box-sizing: border-box;
         width: 95px;
+        transition: color 1s;
     }
 
     .no-overflow {
@@ -68,6 +69,13 @@
         font-family: UI;
         filter: drop-shadow(0 0 3px #00000080);
         transform: translateX(-102px);
+    }
+
+    .y {
+         color: var(--lightyellow);
+   }
+
+    .b {
         color: var(--blue);
     }
 
