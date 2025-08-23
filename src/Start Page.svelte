@@ -41,7 +41,7 @@
         _sound.play('dice');
 
         ss.score = [0, 0];
-        ss.turn = 2 - Date.now() % 2;
+        ss.turn = ss.opp === OPP_FRIEND ? 2 - Date.now() % 2 : 1;
         ss.who_started = 1;
         ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
         ss.queue = range(QUEUE_SIZE).map(() => newBits());
