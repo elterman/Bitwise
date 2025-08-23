@@ -6,6 +6,7 @@
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { range } from './utils';
+    import { newBits } from './shared.svelte';
 
     const loadGame = () => {
         const json = localStorage.getItem(ss.appKey());
@@ -38,13 +39,9 @@
         ss.turn = 1;
         ss.who_started = 1;
         ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
-        ss.queue = range(QUEUE_SIZE).map(() => [sample([1, 0]), sample([1, 0])]);
+        ss.queue = range(QUEUE_SIZE).map(() => newBits());
 
         ss.page = GAME_PAGE;
-    };
-
-    const onBits = (bits) => {
-        ss.bits = bits;
     };
 
     const onOpp = (opp) => {
@@ -57,13 +54,6 @@
         <div class="title">
             <span>BITWISE</span>
             <span class="subtitle">Use your bits wisely.</span>
-        </div>
-        <div class="ops-box modes">
-            <span class="subtitle">mode:</span>
-            <div class="ops">
-                <span class="op {ss.bits === 1 ? 'op-selected' : ''}" onpointerdown={() => onBits(1)}>1-bit</span>
-                <span class="op {ss.bits === 2 ? 'op-selected' : ''}" onpointerdown={() => onBits(2)}>2-bit</span>
-            </div>
         </div>
         <div class="ops-box opps">
             <span class="subtitle">opponent:</span>

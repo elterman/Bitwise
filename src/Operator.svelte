@@ -4,6 +4,7 @@
     import { ss } from './state.svelte';
     import { post } from './utils';
     import XO from './XO.svelte';
+    import { newBits } from './shared.svelte';
 
     const { op } = $props();
 
@@ -41,7 +42,7 @@
         ss.turn = 3 - ss.turn;
 
         const que = [...ss.queue];
-        que.unshift([sample([1, 0]), sample([1, 0])]);
+        que.unshift(newBits());
         que.splice(QUEUE_SIZE - 1, 2, output);
         ss.queue = que;
 

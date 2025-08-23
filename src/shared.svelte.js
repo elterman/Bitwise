@@ -1,3 +1,4 @@
+import { sample } from 'lodash-es';
 import { APP_STATE } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
@@ -23,3 +24,5 @@ export const valueColor = (bits) => {
 
     return b1 && b2 ? 'green' : b1 && !b2 ? 'yellow' : b2 && !b1 ? 'blue' : 'off-white';
 };
+
+export const newBits = () => sample([[0, 0], [0, 1], [1, 0], [1, 1]]);
