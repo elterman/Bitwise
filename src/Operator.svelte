@@ -1,6 +1,7 @@
 <script>
     import { QUEUE_SIZE } from './const';
     import { fn, newBits, valueColor } from './shared.svelte';
+    import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
     import { post } from './utils';
     import XO from './XO.svelte';
@@ -8,7 +9,8 @@
     const { op } = $props();
     let output = $derived(fn(op));
 
-    const onOpSelect = () => {
+    const onClick = () => {
+        _sound.play('click');
         ss.op = op;
 
         const score = [...ss.score];
@@ -36,6 +38,7 @@
         ss.new = newBits();
 
         post(() => {
+            _sound.play('cluck');
             const que = [...ss.queue];
             que.unshift(ss.new);
             que.splice(QUEUE_SIZE - 1, 2, output);
@@ -51,7 +54,7 @@
     const disabled = $derived(ss.op || op === ss.last_op);
 </script>
 
-<div class="op {op === ss.op ? 'selected' : disabled ? 'disabled' : ''}" onpointerdown={onOpSelect}>
+<div class="op {op === ss.op ? 'selected' : disabled ? 'disabled' : ''}" onpointerdown={onClick}>
     <div>{op}</div>
     <div class="bits {valueColor(output)} {disabled ? 'bits-disabled' : ''}">
         <XO x={output[0]} {size} />

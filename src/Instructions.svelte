@@ -12,8 +12,6 @@
         display: grid;
         width: 90%;
         font-family: UI;
-        /* font-size: 17px; */
-        /* margin: 0 20px; */
         filter: drop-shadow(0 0 3px #00000080);
         color: var(--blue);
     }

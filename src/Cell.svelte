@@ -47,7 +47,7 @@
         align-items: center;
         background: #fff8;
         transition:
-            transform var(--duration) linear,
+            transform var(--duration) cubic-bezier(0.55, 0.055, 0.675, 0.19),
             background-color var(--duration) linear;
     }
 

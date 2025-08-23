@@ -1,7 +1,7 @@
 import { sample } from 'lodash-es';
 import { APP_STATE, QUEUE_SIZE } from './const';
 import { _sound } from './sound.svelte';
-import { _prompt, _stats, ss } from './state.svelte';
+import { _stats, ss } from './state.svelte';
 
 export const log = (value) => console.log($state.snapshot(value));
 
