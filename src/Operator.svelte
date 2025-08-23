@@ -40,9 +40,11 @@
             }
         }
 
-        if (ss.score[0] > score[0]){
+        const keepTurn = false;
+
+        if (keepTurn && ss.score[0] > score[0]) {
             ss.turn = 1;
-        } else if (ss.score[1] > score[1]){
+        } else if (keepTurn && ss.score[1] > score[1]) {
             ss.turn = 2;
         } else {
             ss.turn = 3 - ss.turn;
