@@ -11,10 +11,33 @@
     const grid = `repeat(${QUEUE_SIZE}, 50px)/auto;`;
 </script>
 
-<div class="queue" style="grid: {grid}">
+<div class="queue no-overflow" style="grid: {grid}">
     {#each ss.queue as bits, index (index + Date.now())}
         <Cell {bits} {index} />
     {/each}
+    {#if ss.new}
+        {@const duration = 350}
+        {@const output = fn(ss.op)}
+        {@const newClasses = `cell default-background ${ss.bits === 2 ? 'double-cell' : ''}`}
+        {@const outputClasses = `cell ${ss.bits === 2 ? 'double-cell' : ''} ${valueColor(output)}`}
+        {@const newParams = { y: '-100%', opacity: 1, duration, delay: duration, easing: linear }}
+        {@const outputParams = { x: '100%', opacity: 1, duration, easing: linear }}
+        {#snippet cell(classes, params, bits, row)}
+            {@const size = xoSize()}
+            {@const filter = 'invert(0.25)'}
+            <div class={classes} style="grid-area: {row}/1" in:fly={params}>
+                <XO x={bits[0]} {size} {filter} />
+                {#if ss.bits === 2}
+                    <XO x={bits[1]} {size} {filter} />
+                {/if}
+            </div>
+        {/snippet}
+        {@render cell(newClasses, newParams, ss.new, 1)}
+        {@render cell(outputClasses, outputParams, output, QUEUE_SIZE)}
+    {/if}
+</div>
+
+<div class="queue" style="grid: {grid}">
     <div class="label" style="grid-area: {QUEUE_SIZE - 1}/1">
         <span>Input A</span>
         <img class="arrow" src={Arrow} alt="" width={28} />
@@ -23,28 +46,6 @@
         <span>Input B</span>
         <img class="arrow" src={Arrow} alt="" width={28} />
     </div>
-    {#if ss.new}
-        {@const duration = 350}
-        {@const output = fn(ss.op)}
-        {@const classes = `cell default-background ${ss.bits === 2 ? 'double-cell' : ''}`}
-        {@const outputClasses = `cell ${ss.bits === 2 ? 'double-cell' : ''} ${valueColor(output)}`}
-        {@const newParams = { y: '-100%', opacity: 1, duration, delay: duration, easing: linear }}
-        {@const outputParams = { x: '100%', opacity: 1, duration, easing: linear }}
-        {@const size = xoSize()}
-        {@const filter = 'invert(0.25)'}
-        <div class={outputClasses} style="grid-area: {QUEUE_SIZE}/1" in:fly={outputParams}>
-            <XO x={output[0]} {size} {filter} />
-            {#if ss.bits === 2}
-                <XO x={output[1]} {size} {filter} />
-            {/if}
-        </div>
-        <div class={classes} style="grid-area: 1/1" in:fly={newParams}>
-            <XO x={ss.new[0]} {size} {filter} />
-            {#if ss.bits === 2}
-                <XO x={ss.new[1]} {size} {filter} />
-            {/if}
-        </div>
-    {/if}
 </div>
 
 <style>
@@ -54,6 +55,9 @@
         display: grid;
         box-sizing: border-box;
         width: 95px;
+    }
+
+    .no-overflow {
         overflow: hidden;
     }
 
