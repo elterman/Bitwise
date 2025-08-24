@@ -2,6 +2,7 @@ import { sample } from 'lodash-es';
 import { APP_STATE, QUEUE_SIZE } from './const';
 import { _sound } from './sound.svelte';
 import { _stats, ss } from './state.svelte';
+import { post } from './utils';
 
 export const log = (value) => console.log($state.snapshot(value));
 
@@ -43,4 +44,45 @@ export const fn = (op) => {
         default:
             return [0, 0];
     }
+};
+
+export const onClickOp = (op) => {
+    ss.op = op;
+    const output = $derived(fn(op));
+
+    const score = [...ss.score];
+
+    if (ss.bits === 1) {
+        ss.score[output[0] === 1 ? 0 : 1] += 1;
+    } else {
+        if (output[0] === 1 && output[1] === 0) {
+            ss.score[0] += 1;
+        } else if (output[0] === 0 && output[1] === 1) {
+            ss.score[1] += 1;
+        }
+    }
+
+    const keepTurn = false;
+
+    if (keepTurn && ss.score[0] > score[0]) {
+        ss.turn = 1;
+    } else if (keepTurn && ss.score[1] > score[1]) {
+        ss.turn = 2;
+    } else {
+        ss.turn = 3 - ss.turn;
+    }
+
+    ss.new = newBits();
+
+    post(() => {
+        _sound.play('cluck');
+        const que = [...ss.queue];
+        que.unshift(ss.new);
+        que.splice(QUEUE_SIZE - 1, 2, output);
+        ss.queue = que;
+        ss.last_op = op;
+
+        delete ss.new;
+        delete ss.op;
+    }, 750);
 };

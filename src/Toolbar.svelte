@@ -7,7 +7,7 @@
     import Restart from '$lib/images/Restart.webp';
     import SoundOff from '$lib/images/Sound Off.webp';
     import SoundOn from '$lib/images/Sound On.webp';
-    import { PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_RESTART, START_PAGE } from './const';
+    import { PROMPT_RESET_STATS, PROMPT_RESTART, START_PAGE } from './const';
     import { persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, _stats, ss } from './state.svelte';
