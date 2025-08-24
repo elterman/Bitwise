@@ -1,13 +1,13 @@
 <script>
     import Hand from '$lib/images/Hand.webp';
     import { sample } from 'lodash-es';
-    import { fade } from 'svelte/transition';
+    import { fade, scale } from 'svelte/transition';
     import { OP_AND, OP_OR, OP_XOR } from './const';
     import { ss } from './state.svelte';
     import { post } from './utils';
     import { _sound } from './sound.svelte';
 
-    let scale = $state(1);
+    let _scale = $state(1);
     let transform = $state('translate(-45px, -50px)');
     let op = $state();
 
@@ -31,11 +31,11 @@
             if (id === 'hand') {
                 post(() => {
                     _sound.play('click');
-                    scale = 0.8;
+                    _scale = 0.8;
                 }, 300);
             } else if (id === 'icon') {
-                if (scale < 1) {
-                    scale = 1;
+                if (_scale < 1) {
+                    _scale = 1;
                     ss.pressed = op;
                 }
             }
@@ -47,7 +47,14 @@
 </script>
 
 <div id="hand" class="hand" style="transform: {transform};">
-    <img id="icon" class={scale < 1 ? 'scale' : ''} src={Hand} alt="" width={40} in:fade={{ delay: 700 }} out:fade={{ delay: 500 }} />
+    <img
+        id="icon"
+        class={_scale < 1 ? 'scale' : ''}
+        src={Hand}
+        alt=""
+        width={40}
+        in:scale={{ delay: 700 }}
+        out:scale={{ delay: 500, opacity: 1, duration: 500 }} />
 </div>
 
 <style>
