@@ -44,7 +44,9 @@
     const muted = $derived(ss.op || op === ss.last_op);
 </script>
 
-<div class="op {op === ss.op ? 'selected' : muted ? 'muted disabled' : disabled ? 'disabled' : ''}" onpointerdown={onPointerDown}>
+<div
+    class="op {op === ss.op || op === ss.robo_op ? 'selected' : muted ? 'muted disabled' : disabled ? 'disabled' : ''}"
+    onpointerdown={onPointerDown}>
     <div bind:this={_op} class="name {pressed ? 'pressed' : ''}">{op}</div>
     <div class="bits {valueColor(output)}">
         <XO x={output[0]} {size} />

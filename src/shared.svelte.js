@@ -1,5 +1,5 @@
 import { sample } from 'lodash-es';
-import { APP_STATE, QUEUE_SIZE } from './const';
+import { QUEUE_SIZE } from './const';
 import { _sound } from './sound.svelte';
 import { _stats, ss } from './state.svelte';
 import { post } from './utils';
@@ -12,7 +12,7 @@ export const persist = () => {
         turn: ss.turn, who_started: ss.who_started, last_op: ss.last_op,
     });
 
-    localStorage.setItem(APP_STATE, json);
+    localStorage.setItem(ss.appKey(), json);
 };
 
 export const valueColor = (bits) => {
@@ -47,6 +47,7 @@ export const fn = (op) => {
 };
 
 export const onClickOp = (op) => {
+    delete ss.robo_op;
     ss.op = op;
     const output = $derived(fn(op));
 
@@ -84,5 +85,7 @@ export const onClickOp = (op) => {
 
         delete ss.new;
         delete ss.op;
+
+        persist();
     }, 750);
 };

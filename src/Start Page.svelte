@@ -4,7 +4,7 @@
     import { sample } from 'lodash-es';
     import { fade } from 'svelte/transition';
     import { GAME_PAGE, OP_AND, OP_OR, OP_XOR, OPP_AI, OPP_FRIEND, QUEUE_SIZE, START_PAGE } from './const';
-    import { newBits } from './shared.svelte';
+    import { newBits, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { range } from './utils';
@@ -34,17 +34,18 @@
     const onPlay = (opp) => {
         ss.opp = opp;
 
-        if (loadGame()) {
-            return;
+        if (!loadGame()) {
+            _sound.play('dice');
+
+            ss.score = [0, 0];
+            ss.turn = ss.opp === OPP_FRIEND ? 2 - (Date.now() % 2) : 1;
+            ss.who_started = ss.turn;
+            ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
+            ss.queue = range(QUEUE_SIZE).map(() => newBits());
+
+            persist();
         }
 
-        _sound.play('dice');
-
-        ss.score = [0, 0];
-        ss.turn = ss.opp === OPP_FRIEND ? 2 - Date.now() % 2 : 1;
-        ss.who_started = 1;
-        ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
-        ss.queue = range(QUEUE_SIZE).map(() => newBits());
         ss.page = GAME_PAGE;
     };
 </script>

@@ -9,14 +9,14 @@
     import Reference from './Reference.svelte';
     import Stats from './Stats.svelte';
     import Toolbar from './Toolbar.svelte';
-    import { APP_STATE, GAME_PAGE, OPP_AI } from './const';
+    import { GAME_PAGE, OPP_AI } from './const';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
 
     onMount(() => {
         const loadGame = () => {
-            const json = localStorage.getItem(APP_STATE);
+            const json = localStorage.getItem(ss.appKey());
             const job = JSON.parse(json);
 
             if (job) {

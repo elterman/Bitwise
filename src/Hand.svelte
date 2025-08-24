@@ -18,6 +18,8 @@
             op = sample(ops);
             const dx = { AND: -170, OR: -92, XOR: -15 };
             transform = `translate(${dx[op]}px, 100px)`;
+
+            post(() => ss.robo_op = op, 800);
         }, 2000);
 
         const onTransitionEnd = (e) => {
