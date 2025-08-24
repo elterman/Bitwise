@@ -21,6 +21,7 @@
         font-size: 36px;
         font-weight: bold;
         transform: translateY(15px);
+        filter: drop-shadow(0 0 5px #00000080);
     }
 
     .flow {

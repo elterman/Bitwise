@@ -36,8 +36,7 @@
         ${li}Both players have completed the ${hi}same number of turns</span>, and</li>
         ${li}At least one player has scored ${hi}10 or more</span> points, and</span></li>
         ${li}The point difference is ${hi}2 or more</span>.</li>
-        </ul>
-`;
+        </ul>`;
 
     const onClose = () => {
         delete ss.help;
