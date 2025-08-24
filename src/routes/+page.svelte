@@ -56,11 +56,11 @@
             <img class="frame" src={Frame} alt="" />
             <GamePage />
             <StartPage />
-            <!-- {#if ss.intro}
+            {#if ss.page === START_PAGE}
                 <div class="disclaimer">
                     <span>MUSIC BY ERIC MATYAS  •  WWW.SOUNDIMAGE.ORG</span>
                 </div>
-            {/if} -->
+            {/if}
         </div>
     {/if}
 </div>
@@ -154,12 +154,13 @@
 
     .disclaimer {
         grid-area: 1/1;
-        place-self: center;
+        place-self: end center;
         font-size: 10px;
-        transform: translateY(350px);
+        transform: translateY(-20px);
         display: grid;
         justify-items: center;
         gap: 3px;
+        opacity: 0.6;
     }
 
     @font-face {
