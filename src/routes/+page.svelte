@@ -1,11 +1,11 @@
 <script>
-    import Splash from '../Splash.svelte';
-    import { post, windowSize } from '../utils';
     import Frame from '$lib/images/Frame.webp';
-    import StartPage from '../Start Page.svelte';
-    import GamePage from '../Game Page.svelte';
-    import { ss } from '../state.svelte';
     import { START_PAGE } from '../const';
+    import GamePage from '../Game Page.svelte';
+    import Splash from '../Splash.svelte';
+    import StartPage from '../Start Page.svelte';
+    import { ss } from '../state.svelte';
+    import { post, windowSize } from '../utils';
 
     let scale = $state(1);
 

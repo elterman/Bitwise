@@ -13,6 +13,7 @@
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
+    import Help from './routes/Help.svelte';
 
     onMount(() => {
         const loadGame = () => {
@@ -32,16 +33,20 @@
 
 {#if ss.page === GAME_PAGE}
     <div class="game-page" in:fade>
-        <Stats />
-        <Reference />
-        <QueueArea />
-        {#if ss.opp === OPP_AI && ss.turn === 2}
-            <Hand />
+        {#if ss.help}
+            <Help />
+        {:else}
+            <Stats />
+            <Reference />
+            <QueueArea />
+            {#if ss.opp === OPP_AI && ss.turn === 2}
+                <Hand />
+            {/if}
+            <Operators />
+            <Instructions />
+            <Prompt />
+            <Toolbar />
         {/if}
-        <Operators />
-        <Instructions />
-        <Prompt />
-        <Toolbar />
     </div>
 {/if}
 

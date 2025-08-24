@@ -48,6 +48,7 @@
 
 <style>
     .reference {
+        grid-area: 2/1;
         display: grid;
         gap: 8px;
         filter: drop-shadow(0 0 3px #00000080);

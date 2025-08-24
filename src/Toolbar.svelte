@@ -18,14 +18,7 @@
     };
 
     const onHelp = () => {
-        // if (ss.intro) {
-        //     showIntro(false);
-        //     if (ss.over) {
-        //         _prompt.set(PROMPT_PLAY_AGAIN);
-        //     }
-        //     return;
-        // }
-        // showIntro(true);
+        ss.help = true;
     };
 
     const onResetStats = () => {
@@ -69,11 +62,13 @@
 
         persist();
     };
+
+    const operating = $derived(ss.op || (ss.opp === OPP_AI && ss.turn === 2));
 </script>
 
 <div class="toolbar">
-    <ToolButton id="tb-back" src={Back} onClick={onBack} disabled={ss.op || (ss.opp === OPP_AI && ss.turn === 2)}/>
-    <ToolButton id="tb-help" src={Help} onClick={onHelp} />
+    <ToolButton id="tb-back" src={Back} onClick={onBack} disabled={operating} />
+    <ToolButton id="tb-help" src={Help} onClick={onHelp} disabled={operating}/>
     <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={!ss.timer} />
     <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={_stats.plays === 0} />
     <ToolButton id="tb-sfx" src={_sound.sfx ? SoundOn : SoundOff} onClick={onSound} />
