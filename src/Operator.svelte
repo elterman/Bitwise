@@ -8,19 +8,17 @@
 
     const { op } = $props();
     const output = $derived(fn(op));
-    let pressed = $state(false);
     let timer = $state(false);
     let _op = $state();
 
     const onClick = () => {
-        _sound.play('tap');
         onClickOp(op);
     };
 
     $effect(() => {
         const onTransitionEnd = () => {
-            if (pressed) {
-                pressed = false;
+            if (ss.pressed === op) {
+                delete ss.pressed;
             } else {
                 post(onClick);
             }
@@ -35,7 +33,8 @@
             return;
         }
 
-        pressed = true;
+        _sound.play('tap');
+        ss.pressed = op;
         timer = post(() => (timer = null), 500);
     };
 
@@ -47,7 +46,7 @@
 <div
     class="op {op === ss.op || op === ss.robo_op ? 'selected' : muted ? 'muted disabled' : disabled ? 'disabled' : ''}"
     onpointerdown={onPointerDown}>
-    <div bind:this={_op} class="name {pressed ? 'pressed' : ''}">{op}</div>
+    <div bind:this={_op} class="name {ss.pressed === op ? 'pressed' : ''}">{op}</div>
     <div class="bits {valueColor(output)}">
         <XO x={output[0]} {size} />
         {#if ss.bits === 2}

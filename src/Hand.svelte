@@ -1,12 +1,11 @@
 <script>
     import Hand from '$lib/images/Hand.webp';
+    import { sample } from 'lodash-es';
     import { fade } from 'svelte/transition';
-    import { _sound } from './sound.svelte';
-    import { post } from './utils';
     import { OP_AND, OP_OR, OP_XOR } from './const';
     import { ss } from './state.svelte';
-    import { sample } from 'lodash-es';
-    import { onClickOp } from './shared.svelte';
+    import { post } from './utils';
+    import { _sound } from './sound.svelte';
 
     let scale = $state(1);
     let transform = $state('translate(-45px, -50px)');
@@ -19,7 +18,7 @@
             const dx = { AND: -170, OR: -92, XOR: -15 };
             transform = `translate(${dx[op]}px, 100px)`;
 
-            post(() => ss.robo_op = op, 800);
+            post(() => (ss.robo_op = op), 800);
         }, 2000);
 
         const onTransitionEnd = (e) => {
@@ -37,7 +36,7 @@
             } else if (id === 'icon') {
                 if (scale < 1) {
                     scale = 1;
-                    post(() => onClickOp(op));
+                    ss.pressed = op;
                 }
             }
         };
