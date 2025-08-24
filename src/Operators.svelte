@@ -11,7 +11,7 @@
             <img class="arrow" src={Arrow} alt="" width={28} />
         </div>
         <div class="label">
-            <span>Outputs</span>
+            <span>Results</span>
             <img class="arrow" src={Arrow} alt="" width={28} />
         </div>
     </div>
