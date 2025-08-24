@@ -8,6 +8,9 @@
 
     const { op } = $props();
     let output = $derived(fn(op));
+    let pressed = $state(false);
+    let timer = $state(false);
+    let _this = $state();
 
     const onClick = () => {
         _sound.play('tap');
@@ -50,12 +53,38 @@
         }, 750);
     };
 
+    $effect(() => {
+        const onTransitionEnd = (e) => {
+            if (e.target.id !== op) {
+                return;
+            }
+
+            if (pressed) {
+                pressed = false;
+            } else {
+                post(onClick);
+            }
+        };
+
+        window.addEventListener('transitionend', onTransitionEnd);
+        return () => window.removeEventListener('transitionend', onTransitionEnd);
+    });
+
+    const onPointerDown = () => {
+        if (timer) {
+            return;
+        }
+
+        pressed = true;
+        timer = post(() => (timer = null), 500);
+    };
+
     const size = 14;
     const disabled = $derived(ss.op || op === ss.last_op);
 </script>
 
-<div class="op {op === ss.op ? 'selected' : disabled ? 'disabled' : ''}" onpointerdown={onClick}>
-    <div>{op}</div>
+<div class="op {op === ss.op ? 'selected' : disabled ? 'disabled' : ''}" onpointerdown={onPointerDown}>
+    <div id={op} class="name {pressed ? 'pressed' : ''}">{op}</div>
     <div class="bits {valueColor(output)}">
         <XO x={output[0]} {size} />
         {#if ss.bits === 2}
@@ -96,5 +125,13 @@
         grid-auto-flow: column;
         gap: 5px;
         padding: 4px 6px;
+    }
+
+    .name {
+        transition: scale 0.1s;
+    }
+
+    .pressed {
+        scale: 0.8;
     }
 </style>

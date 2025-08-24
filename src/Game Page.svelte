@@ -9,7 +9,7 @@
     import Reference from './Reference.svelte';
     import Stats from './Stats.svelte';
     import Toolbar from './Toolbar.svelte';
-    import { APP_STATE, GAME_PAGE } from './const';
+    import { APP_STATE, GAME_PAGE, OPP_AI } from './const';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
@@ -35,7 +35,9 @@
         <Stats />
         <Reference />
         <QueueArea />
-        <Hand/>
+        {#if ss.opp === OPP_AI && ss.turn === 2}
+            <Hand />
+        {/if}
         <Operators />
         <Instructions />
         <Prompt />
