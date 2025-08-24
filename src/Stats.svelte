@@ -1,9 +1,6 @@
 <script>
     import NumberFlow from '@number-flow/svelte';
     import { _stats } from './state.svelte';
-
-    // const aveSecs = $derived(_stats.won ? Math.round(_stats.total_secs / _stats.won) : 0);
-    // const avePoints = $derived(_stats.won ? Math.round(_stats.total_points / _stats.won) : 0);
 </script>
 
 <div class="stats">
@@ -15,9 +12,6 @@
     </div>
     <div class="item">
         <span class="label">AVE</span>
-    </div>
-    <div class="item">
-        <span class="label">BEST</span>
     </div>
 </div>
 

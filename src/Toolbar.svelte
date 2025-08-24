@@ -7,7 +7,7 @@
     import Restart from '$lib/images/Restart.webp';
     import SoundOff from '$lib/images/Sound Off.webp';
     import SoundOn from '$lib/images/Sound On.webp';
-    import { PROMPT_RESET_STATS, PROMPT_RESTART, START_PAGE } from './const';
+    import { OPP_AI, PROMPT_RESET_STATS, PROMPT_RESTART, START_PAGE } from './const';
     import { persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, _stats, ss } from './state.svelte';
@@ -72,7 +72,7 @@
 </script>
 
 <div class="toolbar">
-    <ToolButton id="tb-back" src={Back} onClick={onBack} />
+    <ToolButton id="tb-back" src={Back} onClick={onBack} disabled={ss.op || (ss.opp === OPP_AI && ss.turn === 2)}/>
     <ToolButton id="tb-help" src={Help} onClick={onHelp} />
     <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={!ss.timer} />
     <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={_stats.plays === 0} />
