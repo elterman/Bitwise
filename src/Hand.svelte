@@ -8,7 +8,8 @@
     let transform = $state('translate(-45px, -50px)');
 
     $effect(() => {
-        post(() => (transform = 'translate(-180px, 100px)'), 2000);
+        const dx = {'AND': -170, 'OR': -92, 'XOR': -15};
+        post(() => (transform = `translate(${dx['OR']}px, 100px)`), 2000);
 
         const onTransitionEnd = (e) => {
             const id = e.target.id;

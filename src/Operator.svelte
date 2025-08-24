@@ -10,7 +10,7 @@
     let output = $derived(fn(op));
     let pressed = $state(false);
     let timer = $state(false);
-    let _this = $state();
+    let _op = $state();
 
     const onClick = () => {
         _sound.play('tap');
@@ -54,11 +54,7 @@
     };
 
     $effect(() => {
-        const onTransitionEnd = (e) => {
-            if (e.target.id !== op) {
-                return;
-            }
-
+        const onTransitionEnd = () => {
             if (pressed) {
                 pressed = false;
             } else {
@@ -66,8 +62,8 @@
             }
         };
 
-        window.addEventListener('transitionend', onTransitionEnd);
-        return () => window.removeEventListener('transitionend', onTransitionEnd);
+        _op.addEventListener('transitionend', onTransitionEnd);
+        return () => _op.removeEventListener('transitionend', onTransitionEnd);
     });
 
     const onPointerDown = () => {
@@ -84,7 +80,7 @@
 </script>
 
 <div class="op {op === ss.op ? 'selected' : disabled ? 'disabled' : ''}" onpointerdown={onPointerDown}>
-    <div id={op} class="name {pressed ? 'pressed' : ''}">{op}</div>
+    <div bind:this={_op} class="name {pressed ? 'pressed' : ''}">{op}</div>
     <div class="bits {valueColor(output)}">
         <XO x={output[0]} {size} />
         {#if ss.bits === 2}
