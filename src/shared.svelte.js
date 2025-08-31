@@ -1,8 +1,8 @@
 import { sample } from 'lodash-es';
-import { CHEER_PLAYER1_WON, CHEER_PLAYER2_WON, CHEER_YOU_LOST, CHEER_YOU_WON, CHIME_LOST, CHIME_PLAYER1_WINS, CHIME_PLAYER2_WINS, CHIME_WON, OPP_AI, POINTS_TO_WIN, PROMPT_PLAY_AGAIN, QUEUE_SIZE } from './const';
+import { CHEER_PLAYER1_WON, CHEER_PLAYER2_WON, CHEER_YOU_LOST, CHEER_YOU_WON, CHIME_LOST, CHIME_PLAYER1_WINS, CHIME_PLAYER2_WINS, CHIME_WON, OP_AND, OP_OR, OP_XOR, OPP_AI, OPP_FRIEND, POINTS_TO_WIN, PROMPT_PLAY_AGAIN, QUEUE_SIZE } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
-import { post } from './utils';
+import { post, range } from './utils';
 
 export const log = (value) => console.log($state.snapshot(value));
 
@@ -63,16 +63,6 @@ export const onClickOp = (op) => {
         }
     }
 
-    if (ss.who_started !== ss.turn) {
-        const s1 = ss.score[0];
-        const s2 = ss.score[1];
-
-        if ((s1 >= POINTS_TO_WIN || s2 >= POINTS_TO_WIN) && Math.abs(s1 - s2) >= 2) {
-            onOver(s1 > s2 ? 1 : 2);
-            return;
-        }
-    }
-
     const keepTurn = false;
 
     if (keepTurn && ss.score[0] > score[0]) {
@@ -97,10 +87,19 @@ export const onClickOp = (op) => {
         delete ss.op;
 
         persist();
+
+        if (ss.turn === ss.who_started) {
+            const s1 = ss.score[0];
+            const s2 = ss.score[1];
+
+            if ((s1 >= POINTS_TO_WIN || s2 >= POINTS_TO_WIN) && Math.abs(s1 - s2) >= 2) {
+                onOver(s1 > s2 ? 1 : 2);
+            }
+        }
     }, 750);
 };
 
-export const onOver = (player) => {
+const onOver = (player) => {
     ss.over = player;
 
     delete ss.op;
@@ -117,8 +116,23 @@ export const onOver = (player) => {
         chime = player === 1 ? CHIME_PLAYER1_WINS : CHIME_PLAYER2_WINS;
     }
 
-    _sound.play(chime);
-    _prompt.set(cheer);
+    post(() => {
+        _sound.play(chime);
+        _prompt.set(cheer);
 
-    post(() => _prompt.set(PROMPT_PLAY_AGAIN), 3000);
+        post(() => _prompt.set(PROMPT_PLAY_AGAIN), 3000);
+    }, 500);
+};
+
+export const onPlay = () => {
+    delete ss.over;
+    _sound.play('dice');
+
+    ss.score = [0, 0];
+    ss.turn = ss.opp === OPP_FRIEND ? 2 - (Date.now() % 2) : 1;
+    ss.who_started = ss.turn;
+    ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
+    ss.queue = range(QUEUE_SIZE).map(() => newBits());
+
+    persist();
 };

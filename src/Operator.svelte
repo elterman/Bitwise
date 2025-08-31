@@ -40,7 +40,7 @@
 
     const size = 14;
     const disabled = $derived(ss.opp === OPP_AI && ss.turn === 2);
-    const muted = $derived(ss.op || op === ss.last_op);
+    const muted = $derived(ss.over || ss.op || op === ss.last_op);
 </script>
 
 <div

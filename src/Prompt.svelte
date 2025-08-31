@@ -1,7 +1,7 @@
 <script>
     import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_RESTART } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { persist } from './shared.svelte';
+    import { onPlay, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, _stats, ss } from './state.svelte';
 
@@ -45,7 +45,7 @@
         _sound.play('plop');
 
         ss.flip = true;
-        ss.score = [0, 0];
+        onPlay();
     };
 
     const style = `font-size: ${24}px;`;

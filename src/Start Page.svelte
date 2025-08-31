@@ -4,7 +4,7 @@
     import { sample } from 'lodash-es';
     import { fade } from 'svelte/transition';
     import { GAME_PAGE, OP_AND, OP_OR, OP_XOR, OPP_AI, OPP_FRIEND, QUEUE_SIZE, START_PAGE } from './const';
-    import { newBits, persist } from './shared.svelte';
+    import { newBits, onPlay, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { range } from './utils';
@@ -31,19 +31,11 @@
         return false;
     };
 
-    const onPlay = (opp) => {
+    const onOppSelect = (opp) => {
         ss.opp = opp;
 
         if (!loadGame()) {
-            _sound.play('dice');
-
-            ss.score = [0, 0];
-            ss.turn = ss.opp === OPP_FRIEND ? 2 - (Date.now() % 2) : 1;
-            ss.who_started = ss.turn;
-            ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
-            ss.queue = range(QUEUE_SIZE).map(() => newBits());
-
-            persist();
+            onPlay();
         }
 
         ss.page = GAME_PAGE;
@@ -57,8 +49,8 @@
             <span class="subtitle">Use your bits wisely.</span>
         </div>
         <div></div>
-        <img src={OppAI} alt="" width="100" onpointerdown={() => onPlay(OPP_AI)} />
-        <img src={OppFriend} alt="" width="100" onpointerdown={() => onPlay(OPP_FRIEND)} />
+        <img src={OppAI} alt="" width="100" onpointerdown={() => onOppSelect(OPP_AI)} />
+        <img src={OppFriend} alt="" width="100" onpointerdown={() => onOppSelect(OPP_FRIEND)} />
     </div>
 {/if}
 

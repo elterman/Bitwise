@@ -1,14 +1,15 @@
 <script>
     import Arrow from '$lib/images/Back.webp';
-    import { OP_AND, OP_OR, OP_XOR } from './const';
+    import { OP_AND, OP_OR, OP_XOR, OPP_FRIEND } from './const';
     import Operator from './Operator.svelte';
+    import { ss } from './state.svelte';
 </script>
 
 <div class="operators">
     <div class="labels">
         <div class="label">
             <span>Operators</span>
-            <img class="arrow" src={Arrow} alt="" width={28} />
+            <img class="arrow {!ss.over && (ss.opp === OPP_FRIEND || ss.turn === 1) ? 'pulse' : ''}" src={Arrow} alt="" width={28} />
         </div>
         <div class="label">
             <span>Results</span>
@@ -46,7 +47,21 @@
     }
 
     .arrow {
-        transform: scaleX(-1);
+        scale: -1 1;
         opacity: 0.6;
+    }
+
+    .pulse {
+        animation: pulse 0.25s alternate 6 ease-in-out;
+        animation-delay: 0.8s;
+    }
+
+    @keyframes pulse {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-35%);
+        }
     }
 </style>
