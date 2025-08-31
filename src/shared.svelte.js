@@ -8,7 +8,7 @@ export const log = (value) => console.log($state.snapshot(value));
 
 export const persist = () => {
     const json = JSON.stringify({
-        ..._stats, ..._sound, queue: ss.queue, score: ss.score,
+        ..._stats, ..._sound, started: ss.started, queue: ss.queue, score: ss.score, over: ss.over,
         turn: ss.turn, who_started: ss.who_started, last_op: ss.last_op,
     });
 
@@ -47,6 +47,14 @@ export const fn = (op) => {
 };
 
 export const onClickOp = (op) => {
+    if (!ss.started) {
+        ss.started = true;
+
+        if (ss.opp === OPP_AI) {
+            _stats.plays += 1;
+        }
+    }
+
     delete ss.robo_op;
     ss.op = op;
     const output = $derived(fn(op));
@@ -105,6 +113,19 @@ const onOver = (player) => {
     delete ss.op;
     delete ss.last_op;
 
+    if (ss.opp === OPP_FRIEND) {
+        _stats.plays += 1;
+    }
+
+    if (player === 1) {
+        _stats.won += 1;
+    }
+
+    const [s1, s2] = _stats.total_points;
+    _stats.total_points = [s1 + ss.score[0], s2 + ss.score[1]];
+
+    persist();
+
     let chime = CHIME_WON;
     let cheer;
 
@@ -125,8 +146,11 @@ const onOver = (player) => {
 };
 
 export const onPlay = () => {
-    delete ss.over;
     _sound.play('dice');
+
+    delete ss.over;
+    delete ss.started;
+    _prompt.set(null);
 
     ss.score = [0, 0];
     ss.turn = ss.opp === OPP_FRIEND ? 2 - (Date.now() % 2) : 1;

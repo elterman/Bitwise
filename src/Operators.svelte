@@ -52,7 +52,7 @@
     }
 
     .pulse {
-        animation: pulse 0.25s alternate 6 ease-in-out;
+        animation: pulse 0.5s alternate infinite ease-in-out;
         animation-delay: 0.8s;
     }
 
@@ -61,7 +61,7 @@
             transform: translateX(0);
         }
         to {
-            transform: translateX(-35%);
+            transform: translateX(-30%);
         }
     }
 </style>

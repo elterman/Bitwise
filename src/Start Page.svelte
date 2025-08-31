@@ -1,13 +1,11 @@
 <script>
     import OppAI from '$lib/images/Opponent AI.webp';
     import OppFriend from '$lib/images/Opponent Friend.webp';
-    import { sample } from 'lodash-es';
     import { fade } from 'svelte/transition';
-    import { GAME_PAGE, OP_AND, OP_OR, OP_XOR, OPP_AI, OPP_FRIEND, QUEUE_SIZE, START_PAGE } from './const';
-    import { newBits, onPlay, persist } from './shared.svelte';
+    import { GAME_PAGE, OPP_AI, OPP_FRIEND, START_PAGE } from './const';
+    import { onPlay } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
-    import { range } from './utils';
 
     const loadGame = () => {
         const json = localStorage.getItem(ss.appKey());
@@ -19,8 +17,10 @@
 
             _stats.plays = job.plays;
 
+            ss.started = job.started;
             ss.queue = job.queue;
             ss.score = job.score;
+            ss.over = job.over;
             ss.turn = job.turn;
             ss.who_started = job.who_started;
             ss.last_op = job.last_op;
@@ -34,7 +34,7 @@
     const onOppSelect = (opp) => {
         ss.opp = opp;
 
-        if (!loadGame()) {
+        if (!loadGame() || ss.over) {
             onPlay();
         }
 

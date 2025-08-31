@@ -11,16 +11,12 @@
     let timer = $state(false);
     let _op = $state();
 
-    const onClick = () => {
-        onClickOp(op);
-    };
-
     $effect(() => {
         const onTransitionEnd = () => {
             if (ss.pressed === op) {
                 delete ss.pressed;
             } else {
-                post(onClick);
+                post(() => onClickOp(op));
             }
         };
 
