@@ -1,7 +1,7 @@
 import { sample } from 'lodash-es';
-import { QUEUE_SIZE } from './const';
+import { CHEER_PLAYER1_WON, CHEER_PLAYER2_WON, CHEER_YOU_LOST, CHEER_YOU_WON, CHIME_LOST, CHIME_PLAYER1_WINS, CHIME_PLAYER2_WINS, CHIME_WON, OPP_AI, POINTS_TO_WIN, PROMPT_PLAY_AGAIN, QUEUE_SIZE } from './const';
 import { _sound } from './sound.svelte';
-import { _stats, ss } from './state.svelte';
+import { _prompt, _stats, ss } from './state.svelte';
 import { post } from './utils';
 
 export const log = (value) => console.log($state.snapshot(value));
@@ -63,6 +63,16 @@ export const onClickOp = (op) => {
         }
     }
 
+    if (ss.who_started !== ss.turn) {
+        const s1 = ss.score[0];
+        const s2 = ss.score[1];
+
+        if ((s1 >= POINTS_TO_WIN || s2 >= POINTS_TO_WIN) && Math.abs(s1 - s2) >= 2) {
+            onOver(s1 > s2 ? 1 : 2);
+            return;
+        }
+    }
+
     const keepTurn = false;
 
     if (keepTurn && ss.score[0] > score[0]) {
@@ -88,4 +98,27 @@ export const onClickOp = (op) => {
 
         persist();
     }, 750);
+};
+
+export const onOver = (player) => {
+    ss.over = player;
+
+    delete ss.op;
+    delete ss.last_op;
+
+    let chime = CHIME_WON;
+    let cheer;
+
+    if (ss.opp === OPP_AI) {
+        cheer = player === 1 ? CHEER_YOU_WON : CHEER_YOU_LOST;
+        chime = player === 1 ? CHIME_WON : CHIME_LOST;
+    } else {
+        cheer = player === 1 ? CHEER_PLAYER1_WON : CHEER_PLAYER2_WON;
+        chime = player === 1 ? CHIME_PLAYER1_WINS : CHIME_PLAYER2_WINS;
+    }
+
+    _sound.play(chime);
+    _prompt.set(cheer);
+
+    post(() => _prompt.set(PROMPT_PLAY_AGAIN), 3000);
 };

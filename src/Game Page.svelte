@@ -39,7 +39,7 @@
             <Stats />
             <Reference />
             <QueueArea />
-            {#if ss.opp === OPP_AI && ss.turn === 2}
+            {#if !ss.over && ss.opp === OPP_AI && ss.turn === 2}
                 <Hand />
             {/if}
             <Operators />

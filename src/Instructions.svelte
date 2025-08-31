@@ -1,8 +1,12 @@
 <script>
+    import { _prompt } from './state.svelte';
 </script>
 
-<div class="instr">
-    Combine the two inputs from the queue by applying an available operator above. The selected operator will become unavailable on the next turn.
+<div class="instr {_prompt.id ? 'hidden' : ''}">
+    {#if !_prompt.id}
+        Combine the two inputs from the queue by applying an available operator above. The selected operator will become unavailable on the
+        next turn.
+    {/if}
 </div>
 
 <style>
@@ -14,5 +18,10 @@
         font-size: 15.6px;
         filter: drop-shadow(0 0 3px #00000080);
         color: var(--blue);
+        transition: opacity 0.2s;
+    }
+
+    .hidden {
+        opacity: 0;
     }
 </style>

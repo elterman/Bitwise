@@ -45,7 +45,7 @@
         _sound.play('plop');
 
         ss.flip = true;
-        ss.score = 0;
+        ss.score = [0, 0];
     };
 
     const style = `font-size: ${24}px;`;

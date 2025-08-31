@@ -63,7 +63,7 @@
         persist();
     };
 
-    const operating = $derived(ss.op || (ss.opp === OPP_AI && ss.turn === 2));
+    const operating = $derived(ss.op || (!ss.over && ss.opp === OPP_AI && ss.turn === 2));
 </script>
 
 <div class="toolbar">

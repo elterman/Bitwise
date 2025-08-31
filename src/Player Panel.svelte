@@ -17,7 +17,7 @@
 
 <div class="player-panel {player === 1 ? 'one' : 'two'}">
     <img
-        class="player {ss.turn === player ? 'spin disabled' : ''}"
+        class="player {ss.over ? 'disabled' : ss.turn === player ? 'spin disabled' : ''}"
         src={player === 1 ? Player1 : ss.opp === OPP_AI ? Robot : Player2}
         alt=""
         width={70}
