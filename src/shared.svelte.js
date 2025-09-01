@@ -26,9 +26,9 @@ export const newBits = () => sample([[0, 0], [0, 1], [1, 0], [1, 1]]);
 
 export const xoSize = () => ss.show_reference ? 21 : 20;
 
-export const fn = (op) => {
-    const bits1 = ss.queue[QUEUE_SIZE - 1];
-    const bits2 = ss.queue[QUEUE_SIZE - 2];
+export const fn = (op, que = ss.queue) => {
+    const bits1 = que[que.length - 1];
+    const bits2 = que[que.length - 2];
 
     switch (op) {
         case 'AND':

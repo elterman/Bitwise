@@ -3,10 +3,10 @@
     import { sample } from 'lodash-es';
     import { scale } from 'svelte/transition';
     import { OP_AND, OP_OR, OP_XOR } from './const';
+    import { fn } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
     import { post } from './utils';
-    import { fn } from './shared.svelte';
 
     let pressed = $state();
     let transform = $state('translate(-45px, -50px)');
@@ -14,8 +14,8 @@
 
     const chooseOp = () => {
         const ops = [OP_AND, OP_OR, OP_XOR].filter((op) => op !== ss.op && op !== ss.last_op);
-
         const outs = ops.map((o) => fn(o));
+
         const goodOuts = outs.filter((bits) => !bits[0] && bits[1]);
 
         if (goodOuts.length === 1) {
@@ -26,12 +26,41 @@
 
         const badOuts = outs.filter((bits) => bits[0] && !bits[1]);
 
-        if (goodOuts.length === 0) {
-            if (badOuts.length === 1) {
-                const i = outs.findIndex((bits) => !bits[0] || bits[1]);
-                op = ops[i];
+        if (badOuts.length === 1) {
+            const i = outs.findIndex((bits) => !bits[0] || bits[1]);
+            op = ops[i];
+            return;
+        }
+
+        // both are either good or bad
+
+        const decents = [];
+
+        for (let i = 0; i < 2; i++) {
+            const _op = ops[i];
+            const out = outs[i];
+
+            const que = [...ss.queue];
+            que.splice(que.length - 2, 2, out);
+
+            const _ops = [OP_AND, OP_OR, OP_XOR].filter((o) => o !== _op);
+            const _outs = _ops.map((o) => fn(o, que));
+
+            // both outputs are good?
+            if (_outs.every(bits => !bits[0] && bits[1])) {
+                op = _op;
                 return;
             }
+
+            // neither output is bad
+            if (_outs.every(bits => !bits[0] || bits[1])) {
+                decents.push(_op);
+            }
+        }
+
+        if (decents.length) {
+            op = decents[0];
+            return;
         }
 
         op = sample(ops);

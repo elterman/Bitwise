@@ -53,3 +53,5 @@ export const scrollClass = () => `root-scroll ${isTouchable() ? 'root-scroll-mob
 export const post = (fn, ms) => setTimeout(fn, ms);
 
 export const range = (n) => [...Array(n + 1).keys()].slice(1);
+
+export const sameBits = (bits1, bits2) => bits1.every((b, i) => b === bits2[i]);
