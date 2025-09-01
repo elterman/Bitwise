@@ -2,9 +2,10 @@
     import { fade } from 'svelte/transition';
     import { ss } from '../state.svelte';
     import { POINTS_TO_WIN } from '../const.js';
+    import XO from '../XO.svelte';
 
-    const hi = '<span style="color: var(--off-white);">';
-    const sec = '<span style="margin: 10px 0 -15px; color: var(--off-white);">';
+    const hi = '<span style="color: var(--ow);">';
+    const sec = '<span style="margin: 10px 0 -15px; color: var(--ow);">';
     const ul = '<ul style="margin: 15px 0 0 0;">';
     const ol = '<ol style="margin: 15px 0 0 0;">';
     const li = '<li style="margin: 5px 0 0 -20px;">';
@@ -44,9 +45,12 @@
     };
 </script>
 
-<div class="help" tabindex="-1" onpointerdown={onClose} transition:fade={{ duration: 200 }}>
+<div class="help" tabindex="-1" transition:fade={{ duration: 200 }}>
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html CONTENT}
+</div>
+<div class='close' onpointerdown={onClose} transition:fade={{ duration: 200 }}>
+    <XO x size={13} filter='invert(0.7)'/>
 </div>
 
 <style>
@@ -57,5 +61,26 @@
         font-family: UI;
         font-size: 15px;
         color: var(--blue);
+    }
+
+    .close {
+        grid-area: 1/1 / span 6/1;
+        display: grid;
+        place-self: end;
+        width: 70px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--blue);
+        background: #2d597e;
+        clip-path: inset(0 50% 50% 0);
+        transform: translate(52px, 42px);
+        place-content: start;
+        box-sizing: border-box;
+        padding: 15px;
+        cursor: pointer;
+    }
+
+    .close:hover {
+        filter: contrast(1.2) brightness(1.2);
     }
 </style>

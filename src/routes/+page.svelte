@@ -71,16 +71,16 @@
             margin: 0;
             overflow: hidden;
             --background: #2f5f85;
-            --off-white: #d0d0d0;
+            --ow: #d0d0d0;
             background: var(--background);
-            color: var(--off-white);
+            color: var(--ow);
             --blue: #87b4d8;
             --yellow: #f9d6a2;
             --green: #add0a3;
         }
 
-        .off-white {
-            background: var(--off-white);
+        .ow {
+            background: var(--ow);
         }
 
         .yellow {
