@@ -69,8 +69,10 @@
 <div class="toolbar">
     <ToolButton id="tb-back" src={Back} onClick={onBack} disabled={operating} />
     <ToolButton id="tb-help" src={Help} onClick={onHelp} disabled={operating}/>
-    <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={!ss.started} />
-    <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={_stats.plays === 0} />
+    <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={false} />
+    <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={false} />
+    <!-- <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={!ss.started || ss.over} />
+    <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={_stats.plays === 0} /> -->
     <ToolButton id="tb-sfx" src={_sound.sfx ? SoundOn : SoundOff} onClick={onSound} />
     <ToolButton id="tb-music" src={_sound.music ? MusicOn : MusicOff} onClick={onMusic} />
 </div>

@@ -9,7 +9,11 @@
     <div class="labels">
         <div class="label">
             <span>Operators</span>
-            <img class="arrow {!ss.over && (ss.opp === OPP_FRIEND || ss.turn === 1) ? 'pulse' : ''}" src={Arrow} alt="" width={28} />
+            <img
+                class="arrow {!ss.over && !ss.started && (ss.opp === OPP_FRIEND || ss.turn === 1) ? 'pulse' : ''}"
+                src={Arrow}
+                alt=""
+                width={28} />
         </div>
         <div class="label">
             <span>Results</span>

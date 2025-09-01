@@ -15,11 +15,6 @@ export const _prompt = $state({
     id: '',
     opacity: 0,
 
-    hide: () => {
-        _prompt.opacity = 0;
-        post(() => _prompt.id = null, PROMPT_TRANSITION);
-    },
-
     set: (id) => {
         const doSet = () => {
             _prompt.id = id;
@@ -27,8 +22,8 @@ export const _prompt = $state({
         };
 
         if (_prompt.id) {
-            _prompt.hide(false);
-            post(doSet, PROMPT_TRANSITION);
+            _prompt.opacity = 0;
+            post(() => { _prompt.id = null; doSet(); }, PROMPT_TRANSITION);
         } else {
             doSet();
         }

@@ -156,7 +156,10 @@ export const onPlay = () => {
     ss.turn = ss.opp === OPP_FRIEND ? 2 - (Date.now() % 2) : 1;
     ss.who_started = ss.turn;
     ss.last_op = sample([OP_AND, OP_OR, OP_XOR]);
-    ss.queue = range(QUEUE_SIZE).map(() => newBits());
+
+    if (!ss.queue) {
+        ss.queue = range(QUEUE_SIZE).map(() => newBits());
+    }
 
     persist();
 };
