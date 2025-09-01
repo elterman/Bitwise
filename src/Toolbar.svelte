@@ -1,7 +1,7 @@
 <script>
+    import Back from '$lib/images/Back.webp';
     import MusicOff from '$lib/images/Music Off.webp';
     import MusicOn from '$lib/images/Music On.webp';
-    import Back from '$lib/images/Back.webp';
     import Help from '$lib/images/Question.webp';
     import ResetStats from '$lib/images/Reset Stats.webp';
     import Restart from '$lib/images/Restart.webp';
@@ -14,6 +14,7 @@
     import ToolButton from './Tool Button.svelte';
 
     const onBack = () => {
+        _prompt.set(null);
         ss.page = START_PAGE;
     };
 
@@ -69,10 +70,8 @@
 <div class="toolbar">
     <ToolButton id="tb-back" src={Back} onClick={onBack} disabled={operating} />
     <ToolButton id="tb-help" src={Help} onClick={onHelp} disabled={operating}/>
-    <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={false} />
-    <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={false} />
-    <!-- <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={!ss.started || ss.over} />
-    <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={_stats.plays === 0} /> -->
+    <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={!ss.started || ss.over} />
+    <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={_stats.plays === 0} />
     <ToolButton id="tb-sfx" src={_sound.sfx ? SoundOn : SoundOff} onClick={onSound} />
     <ToolButton id="tb-music" src={_sound.music ? MusicOn : MusicOff} onClick={onMusic} />
 </div>
