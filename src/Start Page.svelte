@@ -16,6 +16,7 @@
             _sound.music = job.music;
 
             _stats.plays = job.plays;
+            _stats.total_points = job.total_points;
 
             ss.started = job.started;
             ss.queue = job.queue;

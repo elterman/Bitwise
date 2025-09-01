@@ -8,8 +8,8 @@ export const log = (value) => console.log($state.snapshot(value));
 
 export const persist = () => {
     const json = JSON.stringify({
-        ..._stats, ..._sound, started: ss.started, queue: ss.queue, score: ss.score, over: ss.over,
-        turn: ss.turn, who_started: ss.who_started, last_op: ss.last_op,
+        ..._stats, ..._sound, started: ss.started, queue: ss.queue, score: ss.score,
+        over: ss.over, turn: ss.turn, who_started: ss.who_started, last_op: ss.last_op,
     });
 
     localStorage.setItem(ss.appKey(), json);
@@ -89,6 +89,7 @@ export const onClickOp = (op) => {
 
         delete ss.new;
         delete ss.op;
+        delete ss.robo_op;
 
         persist();
 
@@ -107,6 +108,7 @@ const onOver = (player) => {
     ss.over = player;
 
     delete ss.op;
+    delete ss.robo_op;
     delete ss.last_op;
 
     _stats.plays += 1;

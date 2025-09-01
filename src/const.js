@@ -27,4 +27,4 @@ export const CHIME_WON = 'won';
 export const CHIME_LOST = 'lost';
 export const CHIME_PLAYER1_WINS = 'player1wins';
 export const CHIME_PLAYER2_WINS = 'player2wins';
-export const POINTS_TO_WIN = 10;
+export const POINTS_TO_WIN = 3;
