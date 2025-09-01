@@ -61,13 +61,13 @@
         <PromptPanel
             ops={[
                 { label: ss.opp === OPP_AI ? PROMPT_RESTART : PROMPT_START_OVER, style, onClick: onRestart },
-                { label: PROMPT_NO, style },
+                { label: PROMPT_NO, style, onClick: () => {} },
             ]} />
     {:else if label === PROMPT_RESET_STATS}
         <PromptPanel
             ops={[
                 { label, style, onClick: onResetStats },
-                { label: PROMPT_NO, style },
+                { label: PROMPT_NO, style, onClick: () => {} },
             ]} />
     {:else if label}
         <PromptPanel ops={[{ label, style }]} />

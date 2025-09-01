@@ -1,6 +1,7 @@
 <script>
     import { fade } from 'svelte/transition';
     import { ss } from '../state.svelte';
+    import { POINTS_TO_WIN } from '../const.js';
 
     const hi = '<span style="color: var(--off-white);">';
     const sec = '<span style="margin: 10px 0 -15px; color: var(--off-white);">';
@@ -19,7 +20,7 @@
         ${sec}Operators</span>
         ${ul}
         ${li}Available bitwise operators: ${hi}AND, OR, XOR</span>.</li>
-        ${li}The operator used on a turn becomes ${hi}unavailable on the next turn</span>. The other two operators become available again.</li>
+        ${li}The operator used on a turn becomes ${hi}unavailable on the next turn</span>. The other two operators become available.</li>
         ${li}Operators are applied symbol-by-symbol: X is treated as binary 1, O is treated as binary 0. Example: XO OR OX = XX.</li>
         </ul>
         ${sec}Turn Structure</span>
@@ -34,7 +35,7 @@
         ${sec}The game ends when:</span>
         ${ul}
         ${li}Both players have completed the ${hi}same number of turns</span>, and</li>
-        ${li}At least one player has scored ${hi}10 or more</span> points, and</span></li>
+        ${li}At least one player has scored ${hi}${POINTS_TO_WIN} or more</span> points, and</span></li>
         ${li}The point difference is ${hi}2 or more</span>.</li>
         </ul>`;
 

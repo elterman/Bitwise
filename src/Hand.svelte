@@ -16,19 +16,19 @@
         const ops = [OP_AND, OP_OR, OP_XOR].filter((op) => op !== ss.op && op !== ss.last_op);
 
         const outs = ops.map((o) => fn(o));
-        const goodOuts = outs.filter((out) => out[0] === 0 && out[1] === 1);
+        const goodOuts = outs.filter((bits) => !bits[0] && bits[1]);
 
         if (goodOuts.length === 1) {
-            const i = outs.findIndex((out) => out[0] === 0 && out[1] === 1);
+            const i = outs.findIndex((bits) => !bits[0] && bits[1]);
             op = ops[i];
             return;
         }
 
-        const badOuts = outs.filter((out) => out[0] === 1 && out[1] === 0);
+        const badOuts = outs.filter((bits) => bits[0] && !bits[1]);
 
         if (goodOuts.length === 0) {
             if (badOuts.length === 1) {
-                const i = outs.findIndex((out) => out[0] === 0 || out[1] == 1);
+                const i = outs.findIndex((bits) => !bits[0] || bits[1]);
                 op = ops[i];
                 return;
             }

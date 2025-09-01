@@ -19,10 +19,6 @@ export const valueColor = (bits) => {
     const b1 = bits[0];
     const b2 = bits[1];
 
-    if (ss.bits === 1) {
-        return b1 ? 'yellow' : 'blue';
-    }
-
     return b1 && b2 ? 'green' : b1 && !b2 ? 'yellow' : b2 && !b1 ? 'blue' : 'off-white';
 };
 
@@ -53,18 +49,14 @@ export const onClickOp = (op) => {
 
     delete ss.robo_op;
     ss.op = op;
-    const output = $derived(fn(op));
+    const bits = $derived(fn(op));
 
     const score = [...ss.score];
 
-    if (ss.bits === 1) {
-        ss.score[output[0] === 1 ? 0 : 1] += 1;
-    } else {
-        if (output[0] === 1 && output[1] === 0) {
-            ss.score[0] += 1;
-        } else if (output[0] === 0 && output[1] === 1) {
-            ss.score[1] += 1;
-        }
+    if (bits[0] === 1 && bits[1] === 0) {
+        ss.score[0] += 1;
+    } else if (bits[0] === 0 && bits[1] === 1) {
+        ss.score[1] += 1;
     }
 
     const keepTurn = false;
@@ -83,7 +75,7 @@ export const onClickOp = (op) => {
         _sound.play('cluck');
         const que = [...ss.queue];
         que.unshift(ss.new);
-        que.splice(QUEUE_SIZE - 1, 2, output);
+        que.splice(QUEUE_SIZE - 1, 2, bits);
         ss.queue = que;
         ss.last_op = op;
 

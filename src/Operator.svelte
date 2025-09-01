@@ -7,7 +7,7 @@
     import XO from './XO.svelte';
 
     const { op } = $props();
-    const output = $derived(fn(op));
+    const outBits = $derived(fn(op));
     let timer = $state(false);
     let _op = $state();
 
@@ -43,11 +43,9 @@
     class="op {op === ss.op || op === ss.robo_op ? 'selected' : muted ? 'muted disabled' : disabled ? 'disabled' : ''}"
     onpointerdown={onPointerDown}>
     <div bind:this={_op} class="name {ss.pressed === op ? 'pressed' : ''}">{op}</div>
-    <div class="bits {valueColor(output)}">
-        <XO x={output[0]} {size} />
-        {#if ss.bits === 2}
-            <XO x={output[1]} {size} />
-        {/if}
+    <div class="bits {valueColor(outBits)}">
+        <XO x={outBits[0]} {size} />
+        <XO x={outBits[1]} {size} />
     </div>
 </div>
 

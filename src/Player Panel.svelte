@@ -24,17 +24,8 @@
         onpointerdown={onClick} />
     <span class="text">Player {player} scores when the result is</span>
     <div class="bits {valueColor(player === 1 ? [1, 0] : [0, 1])}">
-        {#if player === 1}
-            <XO x {size} />
-            {#if ss.bits === 2}
-                <XO {size} />
-            {/if}
-        {:else}
-            <XO {size} />
-            {#if ss.bits === 2}
-                <XO x {size} />
-            {/if}
-        {/if}
+        <XO x={player === 1} {size} />
+        <XO x={player === 2} {size} />
     </div>
 </div>
 

@@ -1,11 +1,12 @@
 <script>
+    import { POINTS_TO_WIN } from './const';
     import { _prompt, ss } from './state.svelte';
 </script>
 
 <div class="instr {_prompt.id || ss.over ? 'hidden' : ''}">
     {#if !_prompt.id}
         Combine the two inputs from the queue by applying an available operator above. The selected operator will become unavailable on the
-        next turn.
+        next turn. To win, score at least {POINTS_TO_WIN} points with a 2-point lead.
     {/if}
 </div>
 

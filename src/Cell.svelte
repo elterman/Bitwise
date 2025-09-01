@@ -14,7 +14,7 @@
     const classes = $derived.by(() => {
         const input = index > QUEUE_SIZE - 3;
 
-        let classes = `cell ${ss.bits === 2 ? 'double-cell' : ''} `;
+        let classes = 'cell ';
 
         if (!input && (index < QUEUE_SIZE - 3 || !ss.new)) {
             classes += 'default-background ';
@@ -30,9 +30,7 @@
 
 <div class={classes} style="grid-area: {index + 1} / 1">
     <XO x={b1} {size} {filter} />
-    {#if ss.bits === 2}
-        <XO x={b2} {size} {filter} />
-    {/if}
+    <XO x={b2} {size} {filter} />
 </div>
 
 <style>
@@ -42,6 +40,7 @@
         border: solid #00000080;
         border-width: 0 0 1px;
         display: grid;
+        grid: auto / 1fr 1fr;
         grid-auto-flow: column;
         place-content: center;
         align-items: center;
@@ -57,11 +56,6 @@
 
     .default-background {
         background: #ffffff60;
-    }
-
-    .double-cell {
-        grid: auto / 1fr 1fr;
-        padding: 0 6px;
     }
 
     .shift-left {

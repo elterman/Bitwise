@@ -8,7 +8,7 @@
     import { fn, valueColor, xoSize } from './shared.svelte';
     import XO from './XO.svelte';
 
-    const grid = `repeat(${QUEUE_SIZE}, 50px)/auto;`;
+    const grid = `repeat(${QUEUE_SIZE}, 47px)/auto;`;
 </script>
 
 <div class="queue no-overflow" style="grid: {grid}">
@@ -16,9 +16,9 @@
         <Cell {bits} {index} />
     {/each}
     {#if ss.new}
-        {@const output = fn(ss.op)}
-        {@const newClasses = `cell default-background ${ss.bits === 2 ? 'double-cell' : ''}`}
-        {@const outputClasses = `cell ${ss.bits === 2 ? 'double-cell' : ''} ${valueColor(output)}`}
+        {@const outBits = fn(ss.op)}
+        {@const newClasses = 'cell default-background'}
+        {@const outputClasses = `cell ${valueColor(outBits)}`}
         {@const duration = 350}
         {@const newParams = { y: '-100%', opacity: 1, duration, delay: duration + 150, easing: linear }}
         {@const outputParams = { x: '100%', opacity: 1, duration: duration + 150, easing: linear }}
@@ -27,13 +27,11 @@
             {@const filter = 'invert(0.25)'}
             <div class={classes} style="grid-area: {row}/1" in:fly={params}>
                 <XO x={bits[0]} {size} {filter} />
-                {#if ss.bits === 2}
-                    <XO x={bits[1]} {size} {filter} />
-                {/if}
+                <XO x={bits[1]} {size} {filter} />
             </div>
         {/snippet}
         {@render cell(newClasses, newParams, ss.new, 1)}
-        {@render cell(outputClasses, outputParams, output, QUEUE_SIZE)}
+        {@render cell(outputClasses, outputParams, outBits, QUEUE_SIZE)}
     {/if}
 </div>
 
@@ -82,13 +80,10 @@
         border: solid #00000080;
         border-width: 0 0 1px;
         display: grid;
+        grid: auto / 1fr 1fr;
         grid-auto-flow: column;
         place-content: center;
         align-items: center;
-    }
-
-    .double-cell {
-        grid: auto / 1fr 1fr;
         padding: 0 6px;
     }
 
