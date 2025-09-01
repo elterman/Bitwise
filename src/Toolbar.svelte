@@ -5,6 +5,7 @@
     import Help from '$lib/images/Question.webp';
     import ResetStats from '$lib/images/Reset Stats.webp';
     import Restart from '$lib/images/Restart.webp';
+    import Surrender from '$lib/images/Surrender.webp';
     import SoundOff from '$lib/images/Sound Off.webp';
     import SoundOn from '$lib/images/Sound On.webp';
     import { OPP_AI, PROMPT_RESET_STATS, PROMPT_RESTART, START_PAGE } from './const';
@@ -70,7 +71,7 @@
 <div class="toolbar">
     <ToolButton id="tb-back" src={Back} onClick={onBack} disabled={operating} />
     <ToolButton id="tb-help" src={Help} onClick={onHelp} disabled={operating}/>
-    <ToolButton id="tb-restart" src={Restart} onClick={onRestart} disabled={operating || !ss.started || ss.over} />
+    <ToolButton id="tb-restart" src={ss.opp === OPP_AI ? Surrender : Restart} onClick={onRestart} disabled={operating || !ss.started || ss.over} />
     <ToolButton id="tb-reset-stats" src={ResetStats} onClick={onResetStats} disabled={operating || _stats.plays === 0} />
     <ToolButton id="tb-sfx" src={_sound.sfx ? SoundOn : SoundOff} onClick={onSound} />
     <ToolButton id="tb-music" src={_sound.music ? MusicOn : MusicOff} onClick={onMusic} />

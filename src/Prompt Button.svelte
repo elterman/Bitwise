@@ -26,7 +26,7 @@
     });
 </script>
 
-<div id={op.label} class='button-base no-highlight button ${op.onClick ? '' : 'ro'}' {style} onpointerdown={() => (scale = 0.8)}>
+<div id={op.label} class='button-base no-highlight button {op.onClick ? '' : 'ro'}' {style} onpointerdown={() => (scale = 0.8)}>
     <span style={op.style}>{op.label}</span>
 </div>
 
