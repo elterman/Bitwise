@@ -6,15 +6,41 @@
     import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
     import { post } from './utils';
+    import { fn } from './shared.svelte';
 
     let pressed = $state();
     let transform = $state('translate(-45px, -50px)');
     let op = $state();
 
+    const chooseOp = () => {
+        const ops = [OP_AND, OP_OR, OP_XOR].filter((op) => op !== ss.op && op !== ss.last_op);
+
+        const outs = ops.map((o) => fn(o));
+        const goodOuts = outs.filter((out) => out[0] === 0 && out[1] === 1);
+
+        if (goodOuts.length === 1) {
+            const i = outs.findIndex((out) => out[0] === 0 && out[1] === 1);
+            op = ops[i];
+            return;
+        }
+
+        const badOuts = outs.filter((out) => out[0] === 1 && out[1] === 0);
+
+        if (goodOuts.length === 0) {
+            if (badOuts.length === 1) {
+                const i = outs.findIndex((out) => out[0] === 0 || out[1] == 1);
+                op = ops[i];
+                return;
+            }
+        }
+
+        op = sample(ops);
+    };
+
     $effect(() => {
         post(() => {
-            const ops = [OP_AND, OP_OR, OP_XOR].filter((op) => op !== ss.op && op !== ss.last_op);
-            op = sample(ops);
+            chooseOp();
+
             const dx = { AND: -170, OR: -92, XOR: -15 };
             transform = `translate(${dx[op]}px, 100px)`;
 
