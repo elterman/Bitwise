@@ -49,10 +49,6 @@ export const fn = (op) => {
 export const onClickOp = (op) => {
     if (!ss.started) {
         ss.started = true;
-
-        if (ss.opp === OPP_AI) {
-            _stats.plays += 1;
-        }
     }
 
     delete ss.robo_op;
@@ -113,9 +109,7 @@ const onOver = (player) => {
     delete ss.op;
     delete ss.last_op;
 
-    if (ss.opp === OPP_FRIEND) {
-        _stats.plays += 1;
-    }
+    _stats.plays += 1;
 
     if (player === 1) {
         _stats.won += 1;

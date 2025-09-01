@@ -1,5 +1,5 @@
 <script>
-    import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_RESTART } from './const';
+    import { OPP_AI, PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_RESTART, PROMPT_START_OVER } from './const';
     import PromptPanel from './Prompt Panel.svelte';
     import { onPlay, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
@@ -38,6 +38,14 @@
         persist();
     };
 
+    const onRestart = () => {
+        if (ss.opp === OPP_AI) {
+            _stats.plays += 1;
+        }
+
+        onPlayAgain();
+    };
+
     const onPlayAgain = () => {
         _sound.play('plop');
         onPlay();
@@ -52,7 +60,7 @@
     {:else if label === PROMPT_RESTART}
         <PromptPanel
             ops={[
-                { label, style, onClick: onPlayAgain },
+                { label: ss.opp === OPP_AI ? PROMPT_RESTART : PROMPT_START_OVER, style, onClick: onRestart },
                 { label: PROMPT_NO, style },
             ]} />
     {:else if label === PROMPT_RESET_STATS}
