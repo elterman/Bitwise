@@ -55,7 +55,7 @@
         grid-area: 1/1;
         /* place-self: center; */
         display: grid;
-        grid: auto auto 1fr auto 60px auto / auto;
+        grid: auto auto 1fr auto 80px auto / auto;
         gap: 15px;
         transition: opacity 0.2s;
         width: 100%;
