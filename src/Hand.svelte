@@ -35,6 +35,7 @@
         // both are either good or bad
 
         const decents = [];
+        const bads = [];
 
         for (let i = 0; i < 2; i++) {
             const _op = ops[i];
@@ -52,14 +53,24 @@
                 return;
             }
 
-            // neither output is bad
+            // neither output is bad?
             if (_outs.every(bits => !bits[0] || bits[1])) {
                 decents.push(_op);
+            }
+
+            // both outputs are bad?
+            if (_outs.every(bits => bits[0] && !bits[1])) {
+                bads.push(_op);
             }
         }
 
         if (decents.length) {
             op = decents[0];
+            return;
+        }
+
+        if (bads.length === 1) {
+            op = ops.find(o => o !== bads[0]);
             return;
         }
 

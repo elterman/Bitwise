@@ -16,6 +16,7 @@
             _sound.music = job.music;
 
             _stats.plays = job.plays;
+            _stats.won = job.won;
             _stats.total_points = job.total_points;
 
             ss.started = job.started;
@@ -34,6 +35,10 @@
 
     const onOppSelect = (opp) => {
         ss.opp = opp;
+
+        if (!_sound.musicPlayed) {
+            _sound.playMusic();
+        }
 
         if (!loadGame() || ss.over) {
             onPlay();
